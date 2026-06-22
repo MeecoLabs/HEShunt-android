@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Surface
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import eu.meecolabs.heshunt.ui.App
-import eu.meecolabs.heshunt.ui.theme.HistoryHuntTheme
+import eu.meecolabs.heshunt.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HistoryHuntTheme {
+            AppTheme {
                 Surface {
                     App()
                 }
