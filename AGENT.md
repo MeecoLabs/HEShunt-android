@@ -7,7 +7,7 @@ This app is a personal tool to track Historic Environment Scotland’s History H
 - **Architecture**: MVVM with Use Cases and Repository pattern.
 - **Dependency Injection**: Koin with Annotations and KSP.
 - **Data Storage**: Room for collected cards status.
-- **Network**: OkHttp and Retrofit for fetching GeoJSON property data.
+- **Network**: OkHttp for fetching GeoJSON property data.
 - **Serialization**: Kotlin Serialization for data parsing.
 - **Map**: MapLibre Compose SDK for Android.
 - **Testing**: MockK and Turbine for Unit Tests.
