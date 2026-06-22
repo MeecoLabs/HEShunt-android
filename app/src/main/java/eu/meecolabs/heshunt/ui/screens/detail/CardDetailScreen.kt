@@ -156,21 +156,23 @@ private fun CardDetailContent(
                 .padding(16.dp)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(
-                            text = card.name,
-                            style = MaterialTheme.typography.headlineMedium
-                        )
-
-                        Text(
-                            text = card.category.name,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = card.name,
+                        style = MaterialTheme.typography.headlineMedium,
+                        modifier = Modifier.weight(1f)
+                    )
 
                     StatusBadge(status)
                 }
+
+                Text(
+                    text = card.category.name,
+                    style = MaterialTheme.typography.titleMedium
+                )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
