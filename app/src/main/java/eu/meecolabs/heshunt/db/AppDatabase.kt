@@ -1,4 +1,4 @@
-package eu.meecolabs.heshunt.data.local
+package eu.meecolabs.heshunt.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

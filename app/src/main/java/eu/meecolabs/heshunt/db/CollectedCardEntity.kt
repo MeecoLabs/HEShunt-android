@@ -1,4 +1,4 @@
-package eu.meecolabs.heshunt.data.local
+package eu.meecolabs.heshunt.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
