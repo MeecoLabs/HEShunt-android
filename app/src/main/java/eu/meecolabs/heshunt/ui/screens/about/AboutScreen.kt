@@ -5,19 +5,21 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -47,7 +49,9 @@ internal fun AboutScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(R.string.about_title)) },
+                title = {
+                    Text(text = stringResource(R.string.about_title))
+                },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -88,11 +92,7 @@ internal fun AboutScreen(
             )
 
             Text(
-                text = stringResource(
-                    R.string.about_version,
-                    BuildConfig.VERSION_NAME,
-                    BuildConfig.VERSION_CODE
-                ),
+                text = stringResource(R.string.about_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE),
                 style = MaterialTheme.typography.bodyMedium
             )
 
@@ -116,28 +116,44 @@ internal fun AboutScreen(
                 style = MaterialTheme.typography.titleLarge
             )
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(24.dp)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.fillMaxWidth()
             ) {
-                IconButton(
-                    onClick = { uriHandler.openUri("https://www.hes.scot") }
+                OutlinedButton(
+                    onClick = {
+                        uriHandler.openUri("https://www.hes.scot")
+                    },
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_hes),
-                        contentDescription = stringResource(R.string.about_open_hes_website),
-                        tint = Color.Unspecified
+                        contentDescription = null,
+                        modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
+
+                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+
+                    Text(text = stringResource(R.string.about_hes_label))
                 }
 
-                IconButton(
-                    onClick = { uriHandler.openUri("https://github.com/MeecoLabs/HEShunt-android") }
+                OutlinedButton(
+                    onClick = {
+                        uriHandler.openUri("https://github.com/MeecoLabs/HEShunt-android")
+                    },
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_github),
-                        contentDescription = stringResource(R.string.about_open_github_repository),
+                        contentDescription = null,
+                        modifier = Modifier.size(ButtonDefaults.IconSize),
                         tint = Color.White
                     )
+
+                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+
+                    Text(text = stringResource(R.string.about_github_label))
                 }
             }
         }
