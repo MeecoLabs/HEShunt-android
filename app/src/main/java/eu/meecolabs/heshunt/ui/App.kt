@@ -6,6 +6,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import eu.meecolabs.heshunt.ui.screens.about.AboutDestination
+import eu.meecolabs.heshunt.ui.screens.about.AboutScreen
 import eu.meecolabs.heshunt.ui.screens.cards.CardsDestination
 import eu.meecolabs.heshunt.ui.screens.cards.CardsScreen
 import eu.meecolabs.heshunt.ui.screens.detail.CardDetailDestination
@@ -26,6 +28,17 @@ fun App() {
                 CardsScreen(
                     onCardClick = {
                         backStack.add(CardDetailDestination(it))
+                    },
+                    onAboutClick = {
+                        backStack.add(AboutDestination)
+                    }
+                )
+            }
+
+            entry<AboutDestination> {
+                AboutScreen(
+                    onBackClick = {
+                        backStack.removeLastOrNull()
                     }
                 )
             }
