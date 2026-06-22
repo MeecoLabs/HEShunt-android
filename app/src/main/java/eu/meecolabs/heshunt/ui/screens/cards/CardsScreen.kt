@@ -36,9 +36,9 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 internal fun CardsScreen(
     onCardClick: (String) -> Unit,
-    onAboutClick: () -> Unit
+    onAboutClick: () -> Unit,
+    viewModel: CardsViewModel = koinViewModel()
 ) {
-    val viewModel: CardsViewModel = koinViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showFilterMenu by remember { mutableStateOf(false) }
 
@@ -124,6 +124,7 @@ internal fun CardsScreen(
                     CircularProgressIndicator()
                 }
             }
+
             is UiState.Success -> {
                 when (state.currentView) {
                     CardsView.List ->
