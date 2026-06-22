@@ -1,0 +1,13 @@
+package eu.meecolabs.heshunt.data.cards.models
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class CardDto(
+    val id: String,
+    val name: String,
+    val category: String,
+    val description: String,
+    val siteIds: List<String>,
+    val availability: List<AvailabilityDto>? = null
+)

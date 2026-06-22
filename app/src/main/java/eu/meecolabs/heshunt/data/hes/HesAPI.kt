@@ -1,6 +1,6 @@
-package eu.meecolabs.heshunt.network.hes
+package eu.meecolabs.heshunt.data.hes
 
-import eu.meecolabs.heshunt.network.hes.model.GeoJsonDto
+import eu.meecolabs.heshunt.data.hes.models.GeoJsonDto
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
