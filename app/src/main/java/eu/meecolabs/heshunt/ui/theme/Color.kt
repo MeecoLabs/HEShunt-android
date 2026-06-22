@@ -12,6 +12,8 @@ val HesDurness = Color(0xFFF9BE00)
 val HesDurnessTint = Color(0xFFFFE48C)
 val HesEdinburghRed = Color(0xFFA61F29)
 val HesErrorRed = Color(0xFFDC2E2E)
+val HesSurface = Color(0xFF252127)
+val HesBackgroundLight = Color(0xFFFDFBFF)
 
 // App Icon Background
 val IconBackground = Color(0xFF002855)

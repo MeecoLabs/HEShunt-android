@@ -6,14 +6,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
-    primary = HesDurnessTint,
-    onPrimary = OffBlack,
+    primary = HesBlue,
+    onPrimary = Color.White,
     secondary = HesGreenTint,
     onSecondary = OffBlack,
     tertiary = HesDurness,
     onTertiary = OffBlack,
     background = OffBlack,
-    surface = OffBlack,
+    surface = HesSurface,
     onBackground = Color.White,
     onSurface = Color.White,
     error = HesErrorRed,
@@ -27,7 +27,7 @@ private val LightColorScheme = lightColorScheme(
     onSecondary = Color.White,
     tertiary = HesGreen,
     onTertiary = Color.White,
-    background = Color.White,
+    background = HesBackgroundLight,
     surface = Color.White,
     onBackground = OffBlack,
     onSurface = OffBlack,
