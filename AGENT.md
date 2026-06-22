@@ -18,7 +18,7 @@ This app is a personal tool to track Historic Environment Scotland’s History H
 - **Commas**: No dangling commas at the end of lists.
 - **Imports**: No unused imports.
 - **UiState**: Defined next to `ViewModel` as `internal`.
-- **Testing**: Prioritize unit tests in `test` folder.
+- **Testing**: Prioritize unit tests in `test` folder. No manual UI testing by agent.
 - **DI**: Prefer Koin annotations (`@Single`, `@Factory`, `@KoinViewModel`).
 - **cards.json**: Never edit the cards file.
 
