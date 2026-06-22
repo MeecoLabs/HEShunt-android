@@ -10,13 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import eu.meecolabs.heshunt.R
-import eu.meecolabs.heshunt.ui.screens.cards.CardsUiState
+import eu.meecolabs.heshunt.ui.screens.cards.UiState
 import eu.meecolabs.heshunt.ui.screens.cards.list.components.CardListItem
 import eu.meecolabs.heshunt.ui.screens.cards.list.components.SectionHeader
 
 @Composable
 internal fun CardListContent(
-    state: CardsUiState.Success,
+    state: UiState.Success,
     onCardClick: (String) -> Unit,
     onToggleCollected: (String, Boolean) -> Unit,
     modifier: Modifier = Modifier

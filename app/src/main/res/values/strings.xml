@@ -25,6 +25,10 @@
     <string name="card_available_at">Available At:</string>
     <string name="card_show_list">Show List</string>
     <string name="card_show_map">Show Map</string>
+    <string name="card_map_filter_all">All</string>
+    <string name="card_map_filter_missing">Missing</string>
+    <string name="card_map_filter_expired">Expired</string>
+    <string name="card_map_filter_upcoming">Upcoming</string>
 
     <!-- Property / Popup -->
     <string name="property_not_available">Not available here currently</string>
