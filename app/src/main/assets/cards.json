@@ -1,0 +1,259 @@
+[
+  {
+    "id": "fortress",
+    "name": "Formidable Fortress",
+    "category": "main",
+    "description": "Powerful defenses and historic strongholds.",
+    "siteIds": ["PIC227", "PIC129", "PIC114", "PIC182", "PIC185", "PIC016", "PIC134", "PIC118", "PIC139", "PIC061", "PIC120", "PIC194", "PIC065", "PIC222", "PIC069", "PIC332", "PIC149", "PIC250", "PIC333", "PIC030", "PIC123", "PIC034", "PIC111", "PIC164", "PIC217", "PIC323"]
+  },
+  {
+    "id": "sacred",
+    "name": "Sacred Site",
+    "category": "main",
+    "description": "Centers of faith and spiritual heritage.",
+    "siteIds": ["PIC006", "PIC141", "PIC063", "PIC195", "PIC023", "PIC243", "PIC196", "PIC121", "PIC028", "PIC073", "PIC076", "PIC077", "PIC150", "PIC157", "PIC165", "PIC160", "PIC035", "PIC216", "PIC220"]
+  },
+  {
+    "id": "halls",
+    "name": "Halls of History",
+    "category": "main",
+    "description": "Grand residences and places of assembly.",
+    "siteIds": ["PIC001", "PIC228", "PIC292", "PIC135", "PIC239", "PIC027", "PIC071", "PIC247", "PIC155", "PIC204", "PIC122", "PIC263", "PIC270"]
+  },
+  {
+    "id": "towers",
+    "name": "Tall Tower",
+    "category": "main",
+    "description": "Impressive vertical structures and brochs.",
+    "siteIds": ["PIC277", "PIC233", "PIC306", "PIC161", "PIC035"]
+  },
+  {
+    "id": "industry",
+    "name": "Icons of Industry",
+    "category": "main",
+    "description": "Legacy of Scotland's industrial past.",
+    "siteIds": ["PIC113", "PIC055", "PIC152", "PIC209", "PIC043"]
+  },
+  {
+    "id": "settlement",
+    "name": "Social Settlement",
+    "category": "main",
+    "description": "Historic communities and ancient dwellings.",
+    "siteIds": ["PIC249", "PIC155", "PIC314", "PIC272", "PIC273"]
+  },
+  {
+    "id": "stones",
+    "name": "Spellbound Stones",
+    "category": "main",
+    "description": "Ancient monuments and standing stones.",
+    "siteIds": ["PIC130", "PIC305", "PIC031", "PIC313", "PIC321", "PIC100", "PIC066", "PIC041"]
+  },
+  {
+    "id": "jousting",
+    "name": "Spectacular Jousting",
+    "category": "rare",
+    "description": "Special card for jousting events.",
+    "siteIds": ["PIC155", "PIC182"],
+    "availability": [
+      {
+        "from": "2024-06-29",
+        "until": "2024-06-30",
+        "siteIds": ["PIC155"]
+      },
+      {
+        "from": "2024-07-27",
+        "until": "2024-07-28",
+        "siteIds": ["PIC182"]
+      },
+      {
+        "from": "2025-06-28",
+        "until": "2025-06-29",
+        "siteIds": ["PIC155"]
+      },
+      {
+        "from": "2025-07-26",
+        "until": "2025-07-27",
+        "siteIds": ["PIC182"]
+      }
+    ]
+  },
+  {
+    "id": "elgin800",
+    "name": "Elgin 800",
+    "category": "rare",
+    "description": "Celebrating 800 years of Elgin Cathedral.",
+    "siteIds": ["PIC243"],
+    "availability": [
+      {
+        "from": "2024-07-01",
+        "until": "2024-07-31",
+        "siteIds": ["PIC243"]
+      }
+    ]
+  },
+  {
+    "id": "forth-siege",
+    "name": "Siege at the Forth",
+    "category": "rare",
+    "description": "Events at Blackness Castle.",
+    "siteIds": ["PIC129"],
+    "availability": [
+      {
+        "from": "2024-09-07",
+        "until": "2024-09-08",
+        "siteIds": ["PIC129"]
+      }
+    ]
+  },
+  {
+    "id": "glasgow850",
+    "name": "Glasgow 850 Years",
+    "category": "rare",
+    "description": "Celebrating Glasgow's 850th anniversary.",
+    "siteIds": ["PIC121"],
+    "availability": [
+      {
+        "from": "2025-04-01",
+        "until": "2025-12-31"
+      }
+    ]
+  },
+  {
+    "id": "halloween",
+    "name": "Haunted Halloween",
+    "category": "rare",
+    "description": "Exclusive spooky card for Halloween Shenanigans.",
+    "siteIds": ["PIC222", "PIC111", "PIC134", "PIC323", "PIC001", "PIC006", "PIC129", "PIC114", "PIC182", "PIC139", "PIC061", "PIC239", "PIC065", "PIC243", "PIC332", "PIC071", "PIC247", "PIC150", "PIC155", "PIC157", "PIC123", "PIC164"],
+    "availability": [
+      {
+        "from": "2025-10-25",
+        "until": "2025-10-26",
+        "siteIds": ["PIC222"]
+      },
+      {
+        "from": "2025-10-24",
+        "until": "2025-10-31",
+        "siteIds": ["PIC111"]
+      },
+      {
+        "from": "2025-10-25",
+        "until": "2025-10-26",
+        "siteIds": ["PIC134"]
+      },
+      {
+        "from": "2025-10-25",
+        "until": "2025-10-26",
+        "siteIds": ["PIC323"]
+      },
+      {
+        "from": "2025-11-01",
+        "until": "2025-11-02",
+        "siteIds": ["PIC001", "PIC006", "PIC129", "PIC114", "PIC182", "PIC134", "PIC139", "PIC061", "PIC239", "PIC065", "PIC222", "PIC243", "PIC332", "PIC071", "PIC247", "PIC150", "PIC155", "PIC157", "PIC123", "PIC034", "PIC111", "PIC164"]
+      }
+    ]
+  },
+  {
+    "id": "gardens",
+    "name": "Flourishing Gardens",
+    "category": "rare",
+    "description": "Sites featuring notable historic gardens.",
+    "siteIds": ["PIC111", "PIC001", "PIC016", "PIC139", "PIC141", "PIC027", "PIC069"],
+    "availability": [
+      {
+        "from": "2025-01-01",
+        "until": "2025-12-31"
+      }
+    ]
+  },
+  {
+    "id": "traveller",
+    "name": "Good Traveller",
+    "category": "rare",
+    "description": "Awarded for car-free arrival at selected sites.",
+    "siteIds": ["PIC001", "PIC228", "PIC292", "PIC129", "PIC055", "PIC134", "PIC061", "PIC239", "PIC120", "PIC065", "PIC243", "PIC332", "PIC071", "PIC247", "PIC249", "PIC155", "PIC209", "PIC122", "PIC043", "PIC111", "PIC272", "PIC273"],
+    "availability": [
+      {
+        "from": "2025-01-01",
+        "until": "2025-12-31"
+      }
+    ]
+  },
+  {
+    "id": "summer-champions",
+    "name": "Summer of Champions!",
+    "category": "rare",
+    "description": "Collect these rare cards during the Commonwealth Games and Football World Cup.",
+    "siteIds": ["PIC182", "PIC141", "PIC195", "PIC121", "PIC196", "PIC149", "PIC150", "PIC204", "PIC157", "PIC209", "PIC161", "PIC217", "PIC220"],
+    "availability": [
+      {
+        "from": "2026-06-01",
+        "until": "2026-07-31"
+      }
+    ]
+  },
+  {
+    "id": "northern-wanderer",
+    "name": "Northern Wanderer",
+    "category": "rare",
+    "description": "Collect your rare Northern Wanderer card before they run out.",
+    "siteIds": ["PIC227", "PIC275", "PIC293", "PIC277", "PIC228", "PIC332", "PIC306", "PIC305", "PIC314"],
+    "availability": [
+      {
+        "from": "2026-01-01",
+        "until": "2026-12-31"
+      }
+    ]
+  },
+  {
+    "id": "southern-explorer",
+    "name": "Southern Explorer",
+    "category": "rare",
+    "description": "Collect your rare Southern Explorer card before they run out.",
+    "siteIds": ["PIC182", "PIC141", "PIC195", "PIC196", "PIC149", "PIC150", "PIC204", "PIC157", "PIC209", "PIC161", "PIC217", "PIC220"],
+    "availability": [
+      {
+        "from": "2026-01-01",
+        "until": "2026-12-31"
+      }
+    ]
+  },
+  {
+    "id": "wise-women",
+    "name": "Wise Women",
+    "category": "rare",
+    "description": "Honouring inspirational historic women.",
+    "siteIds": ["PIC227", "PIC016", "PIC134", "PIC120", "PIC195", "PIC023", "PIC222", "PIC027", "PIC121", "PIC149", "PIC073", "PIC150", "PIC155", "PIC030", "PIC263", "PIC034", "PIC111", "PIC216", "PIC217", "PIC220"],
+    "availability": [
+      {
+        "from": "2026-01-01",
+        "until": "2026-12-31"
+      }
+    ]
+  },
+  {
+    "id": "sprightly-spring",
+    "name": "Sprightly Spring",
+    "category": "rare",
+    "description": "Seasonal rare card for Easter Trail events.",
+    "siteIds": [],
+    "availability": [
+      {
+        "from": "2026-04-01",
+        "until": "2026-04-30"
+      }
+    ]
+  },
+  {
+    "id": "first-footing-2027",
+    "name": "First Footing",
+    "category": "rare",
+    "description": "Be amongst the first to visit a property in 2027.",
+    "siteIds": ["PIC001", "PIC006", "PIC272", "PIC273", "PIC129", "PIC114", "PIC134", "PIC139", "PIC061", "PIC141", "PIC239", "PIC120", "PIC063", "PIC194", "PIC023", "PIC065", "PIC222", "PIC243", "PIC332", "PIC121", "PIC071", "PIC247", "PIC076", "PIC077", "PIC249", "PIC150", "PIC155", "PIC305", "PIC157", "PIC123", "PIC314", "PIC034", "PIC111", "PIC164", "PIC323"],
+    "availability": [
+      {
+        "from": "2027-01-01",
+        "until": "2027-01-31"
+      }
+    ]
+  }
+]
