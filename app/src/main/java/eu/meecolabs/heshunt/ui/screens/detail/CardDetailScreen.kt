@@ -39,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import eu.meecolabs.heshunt.BuildConfig
 import eu.meecolabs.heshunt.model.Card
 import eu.meecolabs.heshunt.model.CardStatus
 import eu.meecolabs.heshunt.model.Property
@@ -62,6 +63,7 @@ import org.maplibre.compose.layers.SymbolLayer
 import org.maplibre.compose.map.MaplibreMap
 import org.maplibre.compose.sources.GeoJsonData
 import org.maplibre.compose.sources.rememberGeoJsonSource
+import org.maplibre.compose.style.BaseStyle
 import org.maplibre.compose.util.ClickResult
 import org.maplibre.spatialk.geojson.Feature
 import org.maplibre.spatialk.geojson.Feature.Companion.getStringProperty
@@ -343,7 +345,7 @@ private fun CardDetailMap(
                     put("id", property.id)
                     put("active", availableAt.any { it.id == property.id })
                     put("selected", property.id == selectedProperty?.id)
-                },
+                }
             )
         }
     }
@@ -353,8 +355,9 @@ private fun CardDetailMap(
     }
 
     MaplibreMap(
-        modifier = modifier,
+        baseStyle = BaseStyle.Uri(BuildConfig.MAP_BASESTYLE_URI),
         cameraState = cameraState,
+        modifier = modifier
     ) {
         val source = rememberGeoJsonSource(
             data = geoJsonData

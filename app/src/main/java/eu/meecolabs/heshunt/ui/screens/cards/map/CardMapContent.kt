@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import eu.meecolabs.heshunt.BuildConfig
 import eu.meecolabs.heshunt.model.Property
 import eu.meecolabs.heshunt.ui.components.PropertyPopup
 import eu.meecolabs.heshunt.ui.screens.cards.UiState
@@ -38,6 +39,7 @@ import org.maplibre.compose.layers.SymbolLayer
 import org.maplibre.compose.map.MaplibreMap
 import org.maplibre.compose.sources.GeoJsonData
 import org.maplibre.compose.sources.rememberGeoJsonSource
+import org.maplibre.compose.style.BaseStyle
 import org.maplibre.compose.util.ClickResult
 import org.maplibre.spatialk.geojson.Feature
 import org.maplibre.spatialk.geojson.Feature.Companion.getStringProperty
@@ -88,8 +90,9 @@ internal fun CardMapContent(
 
     Box(modifier = modifier.fillMaxSize()) {
         MaplibreMap(
-            modifier = Modifier.fillMaxSize(),
+            baseStyle = BaseStyle.Uri(BuildConfig.MAP_BASESTYLE_URI),
             cameraState = cameraState,
+            modifier = Modifier.fillMaxSize()
         ) {
             // Always needs to be inside MaplibreMap composable or app will crash!
             val source = rememberGeoJsonSource(
