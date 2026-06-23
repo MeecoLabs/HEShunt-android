@@ -2,6 +2,8 @@
 
 A simple Android app to track Historic Environment Scotland’s History Hunt collectible cards.
 
+[Homepage](https://apps.meecolabs/hes-hunt)
+
 ## Features
 
 - List of cards sorted by status: Collected, Available, Missed, Future.
