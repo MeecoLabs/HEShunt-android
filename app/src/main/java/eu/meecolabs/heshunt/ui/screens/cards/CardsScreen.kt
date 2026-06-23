@@ -19,9 +19,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -40,7 +37,7 @@ internal fun CardsScreen(
     viewModel: CardsViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    var showFilterMenu by remember { mutableStateOf(false) }
+    val showMapFilter by viewModel.showMapFilter.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
@@ -78,13 +75,17 @@ internal fun CardsScreen(
 
                         CardsView.Map ->
                             Box {
-                                TextButton(onClick = { showFilterMenu = true }) {
+                                TextButton(onClick = {
+                                    viewModel.showMapFilter(true)
+                                }) {
                                     Text(text = stringResource(state.mapFilter.labelRes))
                                 }
 
                                 DropdownMenu(
-                                    expanded = showFilterMenu,
-                                    onDismissRequest = { showFilterMenu = false }
+                                    expanded = showMapFilter,
+                                    onDismissRequest = {
+                                        viewModel.showMapFilter(false)
+                                    }
                                 ) {
                                     MapFilter.entries.forEach { filter ->
                                         DropdownMenuItem(
@@ -95,11 +96,10 @@ internal fun CardsScreen(
                                                 )
                                             },
                                             text = {
-                                                Text(text = stringResource(state.mapFilter.labelRes))
+                                                Text(text = stringResource(filter.labelRes))
                                             },
                                             onClick = {
                                                 viewModel.setMapFilter(filter)
-                                                showFilterMenu = false
                                             }
                                         )
                                     }
@@ -131,7 +131,9 @@ internal fun CardsScreen(
                         CardListContent(
                             state = state,
                             onCardClick = onCardClick,
-                            onToggleCollected = { id, collected -> viewModel.toggleCollected(id, collected) },
+                            onToggleCollected = { id, collected ->
+                                viewModel.toggleCollected(id, collected)
+                            },
                             modifier = Modifier.padding(padding)
                         )
 

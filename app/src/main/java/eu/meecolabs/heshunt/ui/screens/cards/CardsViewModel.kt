@@ -13,6 +13,7 @@ import eu.meecolabs.heshunt.usecase.ToggleCardCollectedUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -58,6 +59,9 @@ internal class CardsViewModel(
     private val _currentView = MutableStateFlow(CardsView.List)
 
     private val _mapFilter = MutableStateFlow(MapFilter.Missing)
+
+    private val _showMapFilter = MutableStateFlow(false)
+    val showMapFilter = _showMapFilter.asStateFlow()
 
     internal val uiState: StateFlow<UiState> = combine(
         _properties,
@@ -134,7 +138,12 @@ internal class CardsViewModel(
         toggleCardCollectedUseCase(cardId, isCollected)
     }
 
+    fun showMapFilter(value: Boolean) {
+        _showMapFilter.value = value
+    }
+
     fun setMapFilter(filter: MapFilter) {
         _mapFilter.value = filter
+        showMapFilter(false)
     }
 }
