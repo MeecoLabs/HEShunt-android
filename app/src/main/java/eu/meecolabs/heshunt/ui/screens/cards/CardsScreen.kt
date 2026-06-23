@@ -40,6 +40,7 @@ internal fun CardsScreen(
     val currentView by viewModel.currentView.collectAsStateWithLifecycle()
     val mapFilter by viewModel.mapFilter.collectAsStateWithLifecycle()
     val showMapFilter by viewModel.showMapFilter.collectAsStateWithLifecycle()
+    val selectedProperty by viewModel.selectedProperty.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
@@ -137,8 +138,9 @@ internal fun CardsScreen(
                     CardsView.Map ->
                         CardMapContent(
                             state = state,
+                            selectedProperty = selectedProperty,
+                            onSelectProperty = viewModel::selectProperty,
                             onCardClick = onCardClick,
-                            mapFilter = mapFilter,
                             modifier = Modifier.padding(padding)
                         )
                 }

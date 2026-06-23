@@ -63,6 +63,9 @@ internal class CardsViewModel(
     private val _showMapFilter = MutableStateFlow(false)
     val showMapFilter = _showMapFilter.asStateFlow()
 
+    private val _selectedProperty = MutableStateFlow<Property?>(null)
+    val selectedProperty = _selectedProperty.asStateFlow()
+
     internal val uiState: StateFlow<UiState> = combine(
         _properties,
         getCardsUseCase(),
@@ -142,5 +145,10 @@ internal class CardsViewModel(
     fun setMapFilter(filter: MapFilter) {
         _mapFilter.value = filter
         showMapFilter(false)
+        selectProperty(null)
+    }
+
+    fun selectProperty(property: Property?) {
+        _selectedProperty.value = property
     }
 }

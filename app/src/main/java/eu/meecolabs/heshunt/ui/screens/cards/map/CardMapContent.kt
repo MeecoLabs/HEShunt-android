@@ -6,11 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -21,7 +17,6 @@ import androidx.core.net.toUri
 import eu.meecolabs.heshunt.BuildConfig
 import eu.meecolabs.heshunt.model.Property
 import eu.meecolabs.heshunt.ui.components.PropertyPopup
-import eu.meecolabs.heshunt.ui.screens.cards.MapFilter
 import eu.meecolabs.heshunt.ui.screens.cards.UiState
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
@@ -55,16 +50,12 @@ import org.maplibre.spatialk.geojson.Position
 @Composable
 internal fun CardMapContent(
     state: UiState.Success,
-    mapFilter: MapFilter,
+    selectedProperty: Property?,
+    onSelectProperty: (Property?) -> Unit,
     onCardClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
-    var selectedProperty by remember { mutableStateOf<Property?>(null) }
-
-    LaunchedEffect(mapFilter) {
-        selectedProperty = null
-    }
 
     val cameraState = rememberCameraState(
         firstPosition = remember(state.properties.firstOrNull()?.id) {
@@ -134,8 +125,10 @@ internal fun CardMapContent(
                 ),
                 onClick = { clickedFeatures ->
                     val feature = clickedFeatures.firstOrNull()
-                    val id = feature?.getStringProperty("id") ?: feature?.id?.content
-                    selectedProperty = state.properties.find { it.id == id }
+                    val id = feature?.getStringProperty("id")
+                        ?: feature?.id?.content
+                    val selectedProperty = state.properties.find { it.id == id }
+                    onSelectProperty(selectedProperty)
                     ClickResult.Consume
                 },
             )
@@ -157,7 +150,7 @@ internal fun CardMapContent(
             PropertyPopup(
                 property = property,
                 cards = cards,
-                onDismiss = { selectedProperty = null },
+                onDismiss = { onSelectProperty(null) },
                 onWebsiteClick = {
                     val intent = Intent(Intent.ACTION_VIEW, property.website.toUri())
                     context.startActivity(intent)
