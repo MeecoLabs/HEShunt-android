@@ -60,10 +60,14 @@ import org.maplibre.compose.expressions.dsl.image
 import org.maplibre.compose.expressions.dsl.switch
 import org.maplibre.compose.expressions.value.SymbolAnchor
 import org.maplibre.compose.layers.SymbolLayer
+import org.maplibre.compose.map.MapOptions
 import org.maplibre.compose.map.MaplibreMap
+import org.maplibre.compose.map.OrnamentOptions
+import org.maplibre.compose.material3.ExpandingAttributionButton
 import org.maplibre.compose.sources.GeoJsonData
 import org.maplibre.compose.sources.rememberGeoJsonSource
 import org.maplibre.compose.style.BaseStyle
+import org.maplibre.compose.style.rememberStyleState
 import org.maplibre.compose.util.ClickResult
 import org.maplibre.spatialk.geojson.Feature
 import org.maplibre.spatialk.geojson.Feature.Companion.getStringProperty
@@ -335,6 +339,7 @@ private fun CardDetailMap(
             } else CameraPosition()
         }
     )
+    val styleState = rememberStyleState()
 
     val features = remember(allSites, availableAt, selectedProperty?.id) {
         allSites.map { property ->
@@ -354,48 +359,56 @@ private fun CardDetailMap(
         GeoJsonData.Features(FeatureCollection(features))
     }
 
-    MaplibreMap(
-        baseStyle = BaseStyle.Uri(BuildConfig.MAP_BASESTYLE_URI),
-        cameraState = cameraState,
-        modifier = modifier
-    ) {
-        val source = rememberGeoJsonSource(
-            data = geoJsonData
-        )
+    Box(modifier = modifier) {
+        MaplibreMap(
+            baseStyle = BaseStyle.Uri(BuildConfig.MAP_BASESTYLE_URI),
+            cameraState = cameraState,
+            styleState = styleState,
+            options = MapOptions(ornamentOptions = OrnamentOptions.OnlyLogo),
+            modifier = Modifier.matchParentSize()
+        ) {
+            val source = rememberGeoJsonSource(
+                data = geoJsonData
+            )
 
-        val markerActive = image(
-            painterResource(org.maplibre.android.R.drawable.maplibre_marker_icon_default),
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
-        )
-        val markerInactive = image(
-            painterResource(org.maplibre.android.R.drawable.maplibre_marker_icon_default),
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.outline),
-        )
-        val markerSelected = image(
-            painterResource(org.maplibre.android.R.drawable.maplibre_marker_icon_default),
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.error),
-        )
+            val markerDefault = image(
+                painterResource(org.maplibre.android.R.drawable.maplibre_marker_icon_default),
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
+            )
+            val markerSelected = image(
+                painterResource(org.maplibre.android.R.drawable.maplibre_marker_icon_default),
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondary)
+            )
 
-        SymbolLayer(
-            id = "property-layer",
-            source = source,
-            iconImage = switch(
-                condition(feature["selected"].asBoolean(), markerSelected),
-                condition(feature["active"].asBoolean(), markerActive),
-                fallback = markerInactive,
-            ),
-            iconAnchor = const(SymbolAnchor.Bottom),
-            iconAllowOverlap = const(true),
-            iconIgnorePlacement = const(true),
-            sortKey = switch(
-                condition(feature["selected"].asBoolean(), const(1f)),
-                fallback = const(0f),
-            ),
-            onClick = { clickedFeatures ->
-                val id = clickedFeatures.firstOrNull()?.getStringProperty("id")
-                allSites.find { it.id == id }?.let { onPropertyClick(it) }
-                ClickResult.Consume
-            }
-        )
+            SymbolLayer(
+                id = "property-layer",
+                source = source,
+                iconImage = switch(
+                    condition(feature["selected"].asBoolean(), markerSelected),
+                    fallback = markerDefault
+                ),
+                iconAnchor = const(SymbolAnchor.Bottom),
+                iconAllowOverlap = const(true),
+                iconIgnorePlacement = const(true),
+                sortKey = switch(
+                    condition(feature["selected"].asBoolean(), const(1f)),
+                    fallback = const(0f),
+                ),
+                onClick = { clickedFeatures ->
+                    val id = clickedFeatures.firstOrNull()?.getStringProperty("id")
+                    allSites.find { it.id == id }?.let { onPropertyClick(it) }
+                    ClickResult.Consume
+                }
+            )
+        }
+
+        Box(modifier = Modifier.fillMaxSize().padding(8.dp)) {
+            ExpandingAttributionButton(
+                cameraState = cameraState,
+                styleState = styleState,
+                contentAlignment = Alignment.BottomEnd,
+                modifier = Modifier.align(Alignment.BottomEnd)
+            )
+        }
     }
 }
