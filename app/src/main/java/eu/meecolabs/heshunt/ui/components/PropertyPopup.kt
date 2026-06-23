@@ -1,5 +1,6 @@
 package eu.meecolabs.heshunt.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +29,7 @@ internal fun PropertyPopup(
     property: Property,
     cards: List<Card>?,
     onDismiss: () -> Unit,
+    onCardClick: (Card) -> Unit,
     onWebsiteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -74,7 +76,8 @@ internal fun PropertyPopup(
                 cards.forEach { card ->
                     CardStatusRow(
                         card = card,
-                        now = now
+                        now = now,
+                        onClick = { onCardClick(card) }
                     )
                 }
             }
@@ -94,7 +97,8 @@ internal fun PropertyPopup(
 @Composable
 private fun CardStatusRow(
     card: Card,
-    now: LocalDate
+    now: LocalDate,
+    onClick: () -> Unit
 ) {
     val (icon, statusText) = when {
         card.isCollected ->
@@ -112,6 +116,7 @@ private fun CardStatusRow(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
+            .clickable(onClick = onClick)
             .padding(vertical = 4.dp)
     ) {
         Text(

@@ -54,6 +54,7 @@ import org.maplibre.spatialk.geojson.Position
 @Composable
 internal fun CardMapContent(
     state: UiState.Success,
+    onCardClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -158,6 +159,9 @@ internal fun CardMapContent(
                 onWebsiteClick = {
                     val intent = Intent(Intent.ACTION_VIEW, property.website.toUri())
                     context.startActivity(intent)
+                },
+                onCardClick = { card ->
+                    onCardClick(card.id)
                 },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)

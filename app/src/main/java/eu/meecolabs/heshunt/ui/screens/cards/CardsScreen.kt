@@ -140,6 +140,7 @@ internal fun CardsScreen(
                     CardsView.Map ->
                         CardMapContent(
                             state = state,
+                            onCardClick = onCardClick,
                             modifier = Modifier.padding(padding)
                         )
                 }

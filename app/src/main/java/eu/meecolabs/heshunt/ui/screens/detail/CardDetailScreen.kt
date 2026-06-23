@@ -259,6 +259,9 @@ private fun CardDetailContent(
                             val intent = Intent(Intent.ACTION_VIEW, property.website.toUri())
                             context.startActivity(intent)
                         },
+                        onCardClick = {
+                            // No cards in this view
+                        },
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .padding(16.dp)
