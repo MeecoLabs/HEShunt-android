@@ -122,7 +122,7 @@ internal fun CardMapContent(
                     condition(feature["selected"].asBoolean(), markerSelected),
                     fallback = markerDefault
                 ),
-                iconAnchor = const(SymbolAnchor.Bottom),
+                iconAnchor = const(SymbolAnchor.Center),
                 iconAllowOverlap = const(true),
                 iconIgnorePlacement = const(true),
                 sortKey = switch(
