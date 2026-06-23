@@ -37,6 +37,8 @@ internal fun CardsScreen(
     viewModel: CardsViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val currentView by viewModel.currentView.collectAsStateWithLifecycle()
+    val mapFilter by viewModel.mapFilter.collectAsStateWithLifecycle()
     val showMapFilter by viewModel.showMapFilter.collectAsStateWithLifecycle()
 
     Scaffold(
@@ -44,7 +46,6 @@ internal fun CardsScreen(
             CenterAlignedTopAppBar(
                 title = {
                     SingleChoiceSegmentedButtonRow {
-                        val currentView = (uiState as? UiState.Success)?.currentView
                         SegmentedButton(
                             selected = currentView == CardsView.List,
                             onClick = { viewModel.setView(CardsView.List) },
@@ -63,8 +64,7 @@ internal fun CardsScreen(
                     }
                 },
                 actions = {
-                    val state = uiState as? UiState.Success
-                    when (state?.currentView) {
+                    when (currentView) {
                         CardsView.List ->
                             IconButton(onClick = onAboutClick) {
                                 Icon(
@@ -78,7 +78,7 @@ internal fun CardsScreen(
                                 TextButton(onClick = {
                                     viewModel.showMapFilter(true)
                                 }) {
-                                    Text(text = stringResource(state.mapFilter.labelRes))
+                                    Text(text = stringResource(mapFilter.labelRes))
                                 }
 
                                 DropdownMenu(
@@ -92,7 +92,7 @@ internal fun CardsScreen(
                                             leadingIcon = {
                                                 RadioButton(
                                                     onClick = null,
-                                                    selected = state.mapFilter == filter
+                                                    selected = mapFilter == filter
                                                 )
                                             },
                                             text = {
@@ -105,9 +105,6 @@ internal fun CardsScreen(
                                     }
                                 }
                             }
-
-                        else ->
-                            Unit
                     }
                 }
             )
@@ -126,7 +123,7 @@ internal fun CardsScreen(
             }
 
             is UiState.Success -> {
-                when (state.currentView) {
+                when (currentView) {
                     CardsView.List ->
                         CardListContent(
                             state = state,
@@ -141,6 +138,7 @@ internal fun CardsScreen(
                         CardMapContent(
                             state = state,
                             onCardClick = onCardClick,
+                            mapFilter = mapFilter,
                             modifier = Modifier.padding(padding)
                         )
                 }

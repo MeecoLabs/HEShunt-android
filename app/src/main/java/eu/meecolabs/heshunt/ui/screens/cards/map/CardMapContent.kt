@@ -21,6 +21,7 @@ import androidx.core.net.toUri
 import eu.meecolabs.heshunt.BuildConfig
 import eu.meecolabs.heshunt.model.Property
 import eu.meecolabs.heshunt.ui.components.PropertyPopup
+import eu.meecolabs.heshunt.ui.screens.cards.MapFilter
 import eu.meecolabs.heshunt.ui.screens.cards.UiState
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
@@ -54,13 +55,14 @@ import org.maplibre.spatialk.geojson.Position
 @Composable
 internal fun CardMapContent(
     state: UiState.Success,
+    mapFilter: MapFilter,
     onCardClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
     var selectedProperty by remember { mutableStateOf<Property?>(null) }
 
-    LaunchedEffect(state.mapFilter) {
+    LaunchedEffect(mapFilter) {
         selectedProperty = null
     }
 

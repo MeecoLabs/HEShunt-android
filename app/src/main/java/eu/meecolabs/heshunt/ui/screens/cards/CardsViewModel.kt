@@ -42,9 +42,7 @@ internal sealed interface UiState {
         val collected: List<Card>,
         val expired: List<Card>,
         val allCards: List<Card>,
-        val properties: List<Property>,
-        val mapFilter: MapFilter,
-        val currentView: CardsView
+        val properties: List<Property>
     ) : UiState
 }
 
@@ -57,8 +55,10 @@ internal class CardsViewModel(
     private val _properties = MutableStateFlow<List<Property>>(emptyList())
 
     private val _currentView = MutableStateFlow(CardsView.List)
+    val currentView = _currentView.asStateFlow()
 
     private val _mapFilter = MutableStateFlow(MapFilter.Missing)
+    val mapFilter  = _mapFilter.asStateFlow()
 
     private val _showMapFilter = MutableStateFlow(false)
     val showMapFilter = _showMapFilter.asStateFlow()
@@ -66,9 +66,8 @@ internal class CardsViewModel(
     internal val uiState: StateFlow<UiState> = combine(
         _properties,
         getCardsUseCase(),
-        _mapFilter,
-        _currentView
-    ) { properties, cards, mapFilter, currentView ->
+        _mapFilter
+    ) { properties, cards, mapFilter ->
         val now = LocalDate.now()
 
         val filteredProperties = when (mapFilter) {
@@ -108,9 +107,7 @@ internal class CardsViewModel(
             collected = cards.filter { it.isCollected },
             expired = cards.filter { !it.isCollected && it.getStatus(now) == CardStatus.EXPIRED },
             allCards = cards,
-            properties = filteredProperties,
-            mapFilter = mapFilter,
-            currentView = currentView
+            properties = filteredProperties
         )
     }.stateIn(
         scope = viewModelScope,
