@@ -235,7 +235,7 @@
     "name": "Sprightly Spring",
     "category": "rare",
     "description": "Seasonal rare card for Easter Trail events.",
-    "siteIds": [],
+    "siteIds": ["PIC001", "PIC272", "PIC273", "PIC227", "PIC275", "PIC293", "PIC129", "PIC182", "PIC016", "PIC134", "PIC139", "PIC061", "PIC141", "PIC239", "PIC120", "PIC065", "PIC243", "PIC332", "PIC071", "PIC247", "PIC150", "PIC155", "PIC157", "PIC209", "PIC034", "PIC043", "PIC111", "PIC216", "PIC164", "PIC225", "PIC323"],
     "availability": [
       {
         "from": "2026-04-01",

@@ -23,7 +23,7 @@ The latest up-to-date information about the history hunt can be found on the [HE
   - Data compiled from [archived website](https://web.archive.org/web/20250422122311/https://members.historic-scotland.gov.uk/history-hunt), [Halloween announcement](https://web.archive.org/web/20260216025421/https://www.historicenvironment.scot/about-us/news/halloween-descends-on-historic-sites/), [Mythical Mystery Hunt](https://web.archive.org/web/20251101141255/https://www.historicenvironment.scot/visit-a-place/whats-on/event/?eventId=6453bd95-11fc-4168-929d-b340009976c4).
 - **2026 Additions**: Same 7 main cards + 6 rare cards.
   - First mentioned in [Spring 2026 Members Magazine](https://issuu.com/historic-scotland/docs/historic_scotland_spring_2026).
-  - Data compiled from [archived website](https://web.archive.org/web/20260622113418/https://www.historicenvironment.scot/visit/membership-and-passes/membership/the-history-hunt/).
+  - Data compiled from [archived website](https://web.archive.org/web/20260622113418/https://www.historicenvironment.scot/visit/membership-and-passes/membership/the-history-hunt/) and private enquiry with HES.
 
 ### HES Properties (Sites)
 
