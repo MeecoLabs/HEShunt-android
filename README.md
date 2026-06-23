@@ -35,6 +35,7 @@ The latest up-to-date information about the history hunt can be found on the [HE
 Built with modern Android technologies including Kotlin, Jetpack Compose, Koin, and Room.
 
 ### Handcrafted with AI Assistance
+
 While the core logic, UX/UI and architecture are "handcrafted", I leveraged agentic AI coding assistants to streamline development. This was particularly useful for automating mundane, repetitive tasks that traditional IDE features do not yet support (boilerplate generation, complex cross-file refactoring).
 
 For more details on the technical setup, see [AGENT.md](./AGENT.md).
