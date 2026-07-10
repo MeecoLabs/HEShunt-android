@@ -80,7 +80,7 @@ internal class CardsViewModel(
             }
 
             MapFilter.Missing -> {
-                val missingCardSiteIds = cards.filter { !it.isCollected }
+                val missingCardSiteIds = cards.filter { !it.isCollected && it.getStatus(now) == CardStatus.ACTIVE }
                     .flatMap { card ->
                         card.siteIds + card.availability.flatMap { it.siteIds ?: emptyList() }
                     }.toSet()
