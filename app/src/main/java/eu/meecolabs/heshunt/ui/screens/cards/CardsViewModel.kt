@@ -21,12 +21,13 @@ import org.koin.core.annotation.KoinViewModel
 import java.time.LocalDate
 
 internal enum class MapFilter(
-    @get:StringRes val labelRes: Int
+    @get:StringRes val labelRes: Int,
+    val targetStatus: CardStatus? = null
 ) {
     All(R.string.card_map_filter_all),
-    Missing(R.string.card_map_filter_missing),
-    Expired(R.string.card_map_filter_expired),
-    Upcoming(R.string.card_map_filter_upcoming)
+    Missing(R.string.card_map_filter_missing, CardStatus.ACTIVE),
+    Expired(R.string.card_map_filter_expired, CardStatus.EXPIRED),
+    Upcoming(R.string.card_map_filter_upcoming, CardStatus.UPCOMING)
 }
 
 internal enum class CardsView {
@@ -79,28 +80,12 @@ internal class CardsViewModel(
                 properties.filter { propertyIdsWithCards.contains(it.id) }
             }
 
-            MapFilter.Missing -> {
-                val missingCardSiteIds = cards.filter { !it.isCollected && it.getStatus(now) == CardStatus.ACTIVE }
+            else -> {
+                val filteredCardSiteIds = cards.filter { !it.isCollected && it.getStatus(now) == mapFilter.targetStatus }
                     .flatMap { card ->
                         card.siteIds + card.availability.flatMap { it.siteIds ?: emptyList() }
                     }.toSet()
-                properties.filter { missingCardSiteIds.contains(it.id) }
-            }
-
-            MapFilter.Expired -> {
-                val expiredCardSiteIds = cards.filter { !it.isCollected && it.getStatus(now) == CardStatus.EXPIRED }
-                    .flatMap { card ->
-                        card.siteIds + card.availability.flatMap { it.siteIds ?: emptyList() }
-                    }.toSet()
-                properties.filter { expiredCardSiteIds.contains(it.id) }
-            }
-
-            MapFilter.Upcoming -> {
-                val upcomingCardSiteIds = cards.filter { !it.isCollected && it.getStatus(now) == CardStatus.UPCOMING }
-                    .flatMap { card ->
-                        card.siteIds + card.availability.flatMap { it.siteIds ?: emptyList() }
-                    }.toSet()
-                properties.filter { upcomingCardSiteIds.contains(it.id) }
+                properties.filter { filteredCardSiteIds.contains(it.id) }
             }
         }
 
