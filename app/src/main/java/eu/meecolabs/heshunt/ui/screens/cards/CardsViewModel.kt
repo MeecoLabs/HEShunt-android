@@ -1,9 +1,7 @@
 package eu.meecolabs.heshunt.ui.screens.cards
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import eu.meecolabs.heshunt.R
 import eu.meecolabs.heshunt.model.Card
 import eu.meecolabs.heshunt.model.CardStatus
 import eu.meecolabs.heshunt.model.Property
@@ -19,20 +17,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.koin.core.annotation.KoinViewModel
 import java.time.LocalDate
-
-internal enum class MapFilter(
-    @get:StringRes val labelRes: Int,
-    val targetStatus: CardStatus? = null
-) {
-    All(R.string.card_map_filter_all),
-    Missing(R.string.card_map_filter_missing, CardStatus.ACTIVE),
-    Expired(R.string.card_map_filter_expired, CardStatus.EXPIRED),
-    Upcoming(R.string.card_map_filter_upcoming, CardStatus.UPCOMING)
-}
-
-internal enum class CardsView {
-    List, Map
-}
 
 internal sealed interface UiState {
     data object Loading : UiState
