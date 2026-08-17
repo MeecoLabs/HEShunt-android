@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import eu.meecolabs.heshunt.BuildConfig
+import eu.meecolabs.heshunt.R
 import eu.meecolabs.heshunt.model.Card
 import eu.meecolabs.heshunt.model.CardStatus
 import eu.meecolabs.heshunt.model.Property
@@ -92,13 +93,13 @@ fun CardDetailScreen(
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
-                            painter = painterResource(eu.meecolabs.heshunt.R.drawable.ic_back),
-                            contentDescription = stringResource(eu.meecolabs.heshunt.R.string.back_button)
+                            painter = painterResource(R.drawable.ic_back),
+                            contentDescription = stringResource(R.string.back_button)
                         )
                     }
                 },
                 title = {
-                    Text(text = stringResource(eu.meecolabs.heshunt.R.string.card_details_title))
+                    Text(text = stringResource(R.string.card_details_title))
                 }
             )
         }
@@ -191,7 +192,7 @@ private fun CardDetailContent(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Text(
-                        text = stringResource(eu.meecolabs.heshunt.R.string.card_availability_periods),
+                        text = stringResource(R.string.card_availability_periods),
                         style = MaterialTheme.typography.titleSmall
                     )
 
@@ -211,7 +212,7 @@ private fun CardDetailContent(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = if (card.isCollected) stringResource(eu.meecolabs.heshunt.R.string.card_mark_missing) else stringResource(eu.meecolabs.heshunt.R.string.card_mark_collected)
+                        text = if (card.isCollected) stringResource(R.string.card_mark_missing) else stringResource(R.string.card_mark_collected)
                     )
                 }
             }
@@ -225,13 +226,13 @@ private fun CardDetailContent(
                 .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = stringResource(eu.meecolabs.heshunt.R.string.card_available_at),
+                text = stringResource(R.string.card_available_at),
                 style = MaterialTheme.typography.titleLarge
             )
 
             TextButton(onClick = { showMap = !showMap }) {
                 Text(
-                    text = if (showMap) stringResource(eu.meecolabs.heshunt.R.string.card_show_list) else stringResource(eu.meecolabs.heshunt.R.string.card_show_map)
+                    text = if (showMap) stringResource(R.string.card_show_list) else stringResource(R.string.card_show_map)
                 )
             }
         }
@@ -302,7 +303,7 @@ private fun CardDetailContent(
 
                                 if (!isCurrentlyAvailable && (card.getStatus(LocalDate.now()) == CardStatus.ACTIVE)) {
                                     Text(
-                                        text = stringResource(eu.meecolabs.heshunt.R.string.property_not_available),
+                                        text = stringResource(R.string.property_not_available),
                                         color = MaterialTheme.colorScheme.error,
                                         style = MaterialTheme.typography.labelSmall
                                     )
@@ -313,7 +314,7 @@ private fun CardDetailContent(
                                 val intent = Intent(Intent.ACTION_VIEW, property.website.toUri())
                                 context.startActivity(intent)
                             }) {
-                                Text(text = stringResource(eu.meecolabs.heshunt.R.string.property_website))
+                                Text(text = stringResource(R.string.property_website))
                             }
                         }
                     }

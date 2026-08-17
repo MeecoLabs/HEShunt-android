@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import eu.meecolabs.heshunt.R
 import eu.meecolabs.heshunt.model.Card
 import eu.meecolabs.heshunt.model.CardStatus
 import eu.meecolabs.heshunt.model.Property
@@ -50,8 +51,8 @@ internal fun PropertyPopup(
 
                 IconButton(onClick = onDismiss) {
                     Icon(
-                        painter = painterResource(eu.meecolabs.heshunt.R.drawable.ic_close),
-                        contentDescription = stringResource(eu.meecolabs.heshunt.R.string.property_close),
+                        painter = painterResource(R.drawable.ic_close),
+                        contentDescription = stringResource(R.string.property_close),
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
@@ -66,7 +67,7 @@ internal fun PropertyPopup(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = stringResource(eu.meecolabs.heshunt.R.string.property_available_cards),
+                    text = stringResource(R.string.property_available_cards),
                     style = MaterialTheme.typography.titleSmall
                 )
 
@@ -88,7 +89,7 @@ internal fun PropertyPopup(
                 onClick = onWebsiteClick,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = stringResource(eu.meecolabs.heshunt.R.string.property_open_website))
+                Text(text = stringResource(R.string.property_open_website))
             }
         }
     }
@@ -102,13 +103,13 @@ private fun CardStatusRow(
 ) {
     val (icon, statusText) = when {
         card.isCollected ->
-            "✅" to stringResource(eu.meecolabs.heshunt.R.string.status_collected)
+            "✅" to stringResource(R.string.status_collected)
 
         else ->
             when (card.getStatus(now)) {
-                CardStatus.ACTIVE -> "⭕" to stringResource(eu.meecolabs.heshunt.R.string.status_missing)
-                CardStatus.UPCOMING -> "⏳" to stringResource(eu.meecolabs.heshunt.R.string.status_upcoming)
-                CardStatus.EXPIRED -> "❌" to stringResource(eu.meecolabs.heshunt.R.string.status_expired)
+                CardStatus.ACTIVE -> "⭕" to stringResource(R.string.status_missing)
+                CardStatus.UPCOMING -> "⏳" to stringResource(R.string.status_upcoming)
+                CardStatus.EXPIRED -> "❌" to stringResource(R.string.status_expired)
             }
     }
 
