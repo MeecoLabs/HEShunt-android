@@ -1,16 +1,11 @@
 package eu.meecolabs.heshunt.ui.screens.detail.components
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import eu.meecolabs.heshunt.BuildConfig
 import eu.meecolabs.heshunt.model.Property
 import kotlinx.serialization.json.JsonPrimitive
@@ -22,14 +17,12 @@ import org.maplibre.compose.expressions.dsl.asBoolean
 import org.maplibre.compose.expressions.dsl.condition
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.feature
-import org.maplibre.compose.expressions.dsl.image
 import org.maplibre.compose.expressions.dsl.switch
-import org.maplibre.compose.expressions.value.SymbolAnchor
-import org.maplibre.compose.layers.SymbolLayer
-import org.maplibre.compose.map.MapOptions
+import org.maplibre.compose.layers.CircleLayer
 import org.maplibre.compose.map.MaplibreMap
-import org.maplibre.compose.map.OrnamentOptions
 import org.maplibre.compose.material3.ExpandingAttributionButton
+import org.maplibre.compose.overlay.MapOverlay
+import org.maplibre.compose.overlay.MaplibreLogo
 import org.maplibre.compose.sources.GeoJsonData
 import org.maplibre.compose.sources.rememberGeoJsonSource
 import org.maplibre.compose.style.BaseStyle
@@ -85,32 +78,32 @@ internal fun CardDetailMap(
             baseStyle = BaseStyle.Uri(BuildConfig.MAP_BASESTYLE_URI),
             cameraState = cameraState,
             styleState = styleState,
-            options = MapOptions(ornamentOptions = OrnamentOptions.OnlyLogo),
+            overlay = MapOverlay {
+                MaplibreLogo(Modifier.align(Alignment.BottomStart))
+
+                ExpandingAttributionButton(
+                    cameraState = cameraState,
+                    styleState = styleState,
+                    contentAlignment = Alignment.BottomEnd,
+                    modifier = Modifier.align(Alignment.BottomEnd)
+                )
+            },
             modifier = Modifier.matchParentSize()
         ) {
             val source = rememberGeoJsonSource(
                 data = geoJsonData
             )
 
-            val markerDefault = image(
-                painterResource(org.maplibre.android.R.drawable.maplibre_marker_icon_default),
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
-            )
-            val markerSelected = image(
-                painterResource(org.maplibre.android.R.drawable.maplibre_marker_icon_default),
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondary)
-            )
+            val circleDefault = const(MaterialTheme.colorScheme.primary)
+            val circleSelected = const(MaterialTheme.colorScheme.secondary)
 
-            SymbolLayer(
+            CircleLayer(
                 id = "property-layer",
                 source = source,
-                iconImage = switch(
-                    condition(feature["selected"].asBoolean(), markerSelected),
-                    fallback = markerDefault
+                color = switch(
+                    condition(feature["selected"].asBoolean(), circleSelected),
+                    fallback = circleDefault
                 ),
-                iconAnchor = const(SymbolAnchor.Center),
-                iconAllowOverlap = const(true),
-                iconIgnorePlacement = const(true),
                 sortKey = switch(
                     condition(feature["selected"].asBoolean(), const(1f)),
                     fallback = const(0f),
@@ -120,15 +113,6 @@ internal fun CardDetailMap(
                     allSites.find { it.id == id }?.let { onPropertyClick(it) }
                     ClickResult.Consume
                 }
-            )
-        }
-
-        Box(modifier = Modifier.fillMaxSize().padding(8.dp)) {
-            ExpandingAttributionButton(
-                cameraState = cameraState,
-                styleState = styleState,
-                contentAlignment = Alignment.BottomEnd,
-                modifier = Modifier.align(Alignment.BottomEnd)
             )
         }
     }

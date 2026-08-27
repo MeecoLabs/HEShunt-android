@@ -132,6 +132,7 @@ dependencies {
 
     // MapLibre
     implementation(libs.maplibre.compose)
+    runtimeOnly(libs.maplibre.compose.runtime.vulkan)
     implementation(libs.maplibre.compose.material3)
     implementation(libs.maplibre.spatialk.gpx)
 
