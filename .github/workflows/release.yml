@@ -52,11 +52,7 @@ jobs:
       - name: 'Extract Version Information'
         id: version
         run: |
-          VERSION_NAME=$(./gradlew :app:printVersionName -q)
-          VERSION_CODE=$(cat app/version.txt)
-          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
-          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
-          echo "tag=v$VERSION_NAME-b$VERSION_CODE" >> $GITHUB_OUTPUT
+          ./gradlew :app:printVersionInfo -q >> $GITHUB_OUTPUT
 
       - name: 'Build APK'
         env:

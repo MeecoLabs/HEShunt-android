@@ -154,8 +154,12 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
 }
 
-tasks.register("printVersionName") {
+tasks.register("printVersionInfo") {
+    val name = android.defaultConfig.versionName
+    val code = android.defaultConfig.versionCode
     doLast {
-        println(android.defaultConfig.versionName)
+        println("version_name=$name")
+        println("version_code=$code")
+        println("tag=v$name-b$code")
     }
 }
