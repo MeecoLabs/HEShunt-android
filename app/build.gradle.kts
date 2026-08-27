@@ -124,7 +124,7 @@ dependencies {
     implementation(libs.koin.androidx.workmanager)
 
     // App Updates
-    implementation(libs.meecolabs.appupdates)
+    // implementation(libs.meecolabs.appupdates)
 
     // Room
     implementation(libs.androidx.room.runtime)
