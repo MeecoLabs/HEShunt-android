@@ -1,8 +1,10 @@
 package eu.meecolabs.heshunt.ui.screens.cards
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
@@ -43,6 +45,7 @@ internal fun CardsScreen(
     val selectedProperty by viewModel.selectedProperty.collectAsStateWithLifecycle()
 
     Scaffold(
+        contentWindowInsets = WindowInsets.statusBars,
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
@@ -111,13 +114,15 @@ internal fun CardsScreen(
             )
         }
     ) { padding ->
+        val contentModifier = Modifier
+            .fillMaxSize()
+            .padding(top = padding.calculateTopPadding())
+
         when (val state = uiState) {
             is UiState.Loading -> {
                 Box(
                     contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(padding)
+                    modifier = contentModifier
                 ) {
                     CircularProgressIndicator()
                 }
@@ -132,7 +137,7 @@ internal fun CardsScreen(
                             onToggleCollected = { id, collected ->
                                 viewModel.toggleCollected(id, collected)
                             },
-                            modifier = Modifier.padding(padding)
+                            modifier = contentModifier
                         )
 
                     CardsView.Map ->
@@ -141,7 +146,7 @@ internal fun CardsScreen(
                             selectedProperty = selectedProperty,
                             onSelectProperty = viewModel::selectProperty,
                             onCardClick = onCardClick,
-                            modifier = Modifier.padding(padding)
+                            modifier = contentModifier
                         )
                 }
             }

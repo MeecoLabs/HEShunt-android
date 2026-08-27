@@ -2,7 +2,9 @@ package eu.meecolabs.heshunt.ui.screens.cards.map
 
 import android.content.Intent
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -146,7 +148,8 @@ internal fun CardMapContent(
                 },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(16.dp)
+                    .navigationBarsPadding()
+                    .padding(horizontal = 16.dp)
             )
         }
     }
