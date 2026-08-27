@@ -24,7 +24,7 @@ android {
         applicationId = "eu.meecolabs.heshunt"
         minSdk = 28
         targetSdk = 37
-        versionCode = 1
+        versionCode = project.file("version.txt").readText().trim().toInt()
         versionName = SimpleDateFormat("yyyy.MM.dd").format(Date())
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
