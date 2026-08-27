@@ -4,11 +4,16 @@ import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -47,6 +52,7 @@ internal fun CardDetailContent(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+    val navInsets = WindowInsets.navigationBars.asPaddingValues()
 
     var showMap by remember { mutableStateOf(true) }
     var selectedProperty by remember { mutableStateOf<Property?>(null) }
@@ -137,7 +143,7 @@ internal fun CardDetailContent(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(16.dp)
+                    .padding(start = 16.dp, top = 16.dp, end = 16.dp)
             ) {
                 CardDetailMap(
                     allSites = allSites,
@@ -161,16 +167,21 @@ internal fun CardDetailContent(
                         },
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
+                            .navigationBarsPadding()
                             .padding(16.dp)
                     )
                 }
             }
         } else {
             LazyColumn(
+                contentPadding = PaddingValues(
+                    start = 16.dp,
+                    top = 16.dp,
+                    end = 16.dp,
+                    bottom = 16.dp + navInsets.calculateBottomPadding()
+                ),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(horizontal = 16.dp)
+                modifier = Modifier.weight(1f)
             ) {
                 items(allSites) { property ->
                     val isCurrentlyAvailable = availableAt.any { it.id == property.id }

@@ -1,8 +1,10 @@
 package eu.meecolabs.heshunt.ui.screens.detail
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,6 +34,7 @@ fun CardDetailScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
+        contentWindowInsets = WindowInsets.statusBars,
         topBar = {
             CenterAlignedTopAppBar(
                 navigationIcon = {
@@ -48,13 +51,15 @@ fun CardDetailScreen(
             )
         }
     ) { padding ->
+        val contentModifier = Modifier
+            .fillMaxSize()
+            .padding(top = padding.calculateTopPadding())
+
         when (val state = uiState) {
             is UiState.Loading -> {
                 Box(
                     contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(padding)
+                    modifier = contentModifier
                 ) {
                     CircularProgressIndicator()
                 }
@@ -66,18 +71,14 @@ fun CardDetailScreen(
                     availableAt = state.availableAt,
                     allSites = state.allSites,
                     onToggleCollected = viewModel::toggleCollected,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(padding)
+                    modifier = contentModifier
                 )
             }
 
             is UiState.Error -> {
                 Box(
                     contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(padding)
+                    modifier = contentModifier
                 ) {
                     Text(text = state.message)
                 }
