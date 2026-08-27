@@ -1,5 +1,3 @@
-import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Properties
 
 plugins {
@@ -11,21 +9,26 @@ plugins {
     alias(libs.plugins.androidx.room)
 }
 
-val configProperties = Properties()
-project.file("config.properties").inputStream().use { configProperties.load(it) }
-
 android {
     namespace = "eu.meecolabs.heshunt"
     compileSdk {
         version = release(37)
     }
 
+    val versionInfo = Properties().apply {
+        project.file("version.properties").inputStream().use { load(it) }
+    }
+
+    val configProperties = Properties().apply {
+        project.file("config.properties").inputStream().use { load(it) }
+    }
+
     defaultConfig {
         applicationId = "eu.meecolabs.heshunt"
         minSdk = 28
         targetSdk = 37
-        versionCode = project.file("version.txt").readText().trim().toInt()
-        versionName = SimpleDateFormat("yyyy.MM.dd").format(Date())
+        versionCode = versionInfo.getProperty("VERSION_CODE").toInt()
+        versionName = versionInfo.getProperty("VERSION_NAME")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -153,14 +156,4 @@ dependencies {
     testImplementation(libs.turbine)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
-}
-
-tasks.register("printVersionInfo") {
-    val name = android.defaultConfig.versionName
-    val code = android.defaultConfig.versionCode
-    doLast {
-        println("version_name=$name")
-        println("version_code=$code")
-        println("tag=v$name-b$code")
-    }
 }
