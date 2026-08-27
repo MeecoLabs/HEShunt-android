@@ -22,6 +22,8 @@ jobs:
 
       - name: 'Cache Gradle Dependencies'
         uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: basic
 
       - name: 'Grant Gradle Permission'
         run: |
