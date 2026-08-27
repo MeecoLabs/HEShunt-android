@@ -21,18 +21,7 @@ jobs:
           distribution: 'temurin'
 
       - name: 'Cache Gradle Dependencies'
-        uses: actions/cache@v6
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: 'Clean Build Directory'
-        run: |
-          rm -rf app/build
+        uses: gradle/actions/setup-gradle@v6
 
       - name: 'Grant Gradle Permission'
         run: |
@@ -76,7 +65,7 @@ jobs:
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          ./gradlew clean assembleRelease
+          ./gradlew assembleRelease
 
       - name: 'Upload APK'
         uses: actions/upload-artifact@v7
