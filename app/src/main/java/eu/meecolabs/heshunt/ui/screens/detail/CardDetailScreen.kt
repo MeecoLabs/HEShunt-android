@@ -67,7 +67,7 @@ fun CardDetailScreen(
 
             is UiState.Success -> {
                 CardDetailContent(
-                    card = state.card,
+                    item = state.card,
                     availableAt = state.availableAt,
                     allSites = state.allSites,
                     onToggleCollected = viewModel::toggleCollected,

@@ -132,7 +132,7 @@ internal fun CardMapContent(
 
         selectedProperty?.let { property ->
             val cards = remember(property, state.allCards) {
-                state.allCards.filter { it.isAssociatedWith(property.id) }
+                state.allCards.filter { it.card.isAssociatedWith(property.id) }
             }
             PropertyPopup(
                 property = property,
@@ -142,8 +142,8 @@ internal fun CardMapContent(
                     val intent = Intent(Intent.ACTION_VIEW, property.website.toUri())
                     context.startActivity(intent)
                 },
-                onCardClick = { card ->
-                    onCardClick(card.id)
+                onCardClick = {
+                    onCardClick(it.card.id)
                 },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)

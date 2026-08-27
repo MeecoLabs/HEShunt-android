@@ -1,6 +1,5 @@
 package eu.meecolabs.heshunt.ui.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,17 +19,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import eu.meecolabs.heshunt.R
-import eu.meecolabs.heshunt.model.Card
-import eu.meecolabs.heshunt.model.CardStatus
+import eu.meecolabs.heshunt.model.CardWithStatus
 import eu.meecolabs.heshunt.model.Property
-import java.time.LocalDate
 
 @Composable
 internal fun PropertyPopup(
     property: Property,
-    cards: List<Card>?,
+    cards: List<CardWithStatus>?,
     onDismiss: () -> Unit,
-    onCardClick: (Card) -> Unit,
+    onCardClick: (CardWithStatus) -> Unit,
     onWebsiteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -73,11 +70,9 @@ internal fun PropertyPopup(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                val now = LocalDate.now()
                 cards.forEach { card ->
                     CardStatusRow(
-                        card = card,
-                        now = now,
+                        item = card,
                         onClick = { onCardClick(card) }
                     )
                 }
@@ -91,51 +86,6 @@ internal fun PropertyPopup(
             ) {
                 Text(text = stringResource(R.string.property_open_website))
             }
-        }
-    }
-}
-
-@Composable
-private fun CardStatusRow(
-    card: Card,
-    now: LocalDate,
-    onClick: () -> Unit
-) {
-    val (icon, statusText) = when {
-        card.isCollected ->
-            "✅" to stringResource(R.string.status_collected)
-
-        else ->
-            when (card.getStatus(now)) {
-                CardStatus.ACTIVE -> "⭕" to stringResource(R.string.status_missing)
-                CardStatus.UPCOMING -> "⏳" to stringResource(R.string.status_upcoming)
-                CardStatus.EXPIRED -> "❌" to stringResource(R.string.status_expired)
-            }
-    }
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
-            .padding(vertical = 4.dp)
-    ) {
-        Text(
-            text = icon,
-            modifier = Modifier.padding(end = 8.dp)
-        )
-
-        Column {
-            Text(
-                text = card.name,
-                style = MaterialTheme.typography.bodyLarge
-            )
-
-            Text(
-                text = statusText,
-                color = MaterialTheme.colorScheme.outline,
-                style = MaterialTheme.typography.bodySmall
-            )
         }
     }
 }

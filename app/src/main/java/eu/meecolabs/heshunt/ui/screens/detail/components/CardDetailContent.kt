@@ -36,16 +36,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import eu.meecolabs.heshunt.R
-import eu.meecolabs.heshunt.model.Card
 import eu.meecolabs.heshunt.model.CardStatus
+import eu.meecolabs.heshunt.model.CardWithStatus
 import eu.meecolabs.heshunt.model.Property
 import eu.meecolabs.heshunt.ui.components.PropertyPopup
-import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @Composable
 internal fun CardDetailContent(
-    card: Card,
+    item: CardWithStatus,
     availableAt: List<Property>,
     allSites: List<Property>,
     onToggleCollected: (Boolean) -> Unit,
@@ -56,7 +55,6 @@ internal fun CardDetailContent(
 
     var showMap by remember { mutableStateOf(true) }
     var selectedProperty by remember { mutableStateOf<Property?>(null) }
-    val status = remember(card) { card.getStatus(LocalDate.now()) }
 
     Column(modifier = modifier) {
         Card(
@@ -70,27 +68,27 @@ internal fun CardDetailContent(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text(
-                        text = card.name,
+                        text = item.card.name,
                         style = MaterialTheme.typography.headlineMedium,
                         modifier = Modifier.weight(1f)
                     )
 
-                    StatusBadge(status)
+                    StatusBadge(item.status)
                 }
 
                 Text(
-                    text = card.category.name,
+                    text = item.card.category.name,
                     style = MaterialTheme.typography.titleMedium
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = card.description,
+                    text = item.card.description,
                     style = MaterialTheme.typography.bodyLarge
                 )
 
-                if (card.availability.isNotEmpty()) {
+                if (item.card.availability.isNotEmpty()) {
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Text(
@@ -98,7 +96,7 @@ internal fun CardDetailContent(
                         style = MaterialTheme.typography.titleSmall
                     )
 
-                    card.availability.forEach { period ->
+                    item.card.availability.forEach { period ->
                         val formatter = DateTimeFormatter.ofPattern("d MMM yyyy")
                         Text(
                             text = "• %s - %s".format(period.from.format(formatter), period.until.format(formatter)),
@@ -110,11 +108,11 @@ internal fun CardDetailContent(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { onToggleCollected(!card.isCollected) },
+                    onClick = { onToggleCollected(!item.card.isCollected) },
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = if (card.isCollected) stringResource(R.string.card_mark_missing) else stringResource(R.string.card_mark_collected)
+                        text = if (item.card.isCollected) stringResource(R.string.status_collected) else stringResource(R.string.status_collect)
                     )
                 }
             }
@@ -208,7 +206,7 @@ internal fun CardDetailContent(
                                     style = MaterialTheme.typography.bodySmall
                                 )
 
-                                if (!isCurrentlyAvailable && (card.getStatus(LocalDate.now()) == CardStatus.ACTIVE)) {
+                                if (!isCurrentlyAvailable && (item.status == CardStatus.ACTIVE)) {
                                     Text(
                                         text = stringResource(R.string.property_not_available),
                                         color = MaterialTheme.colorScheme.error,

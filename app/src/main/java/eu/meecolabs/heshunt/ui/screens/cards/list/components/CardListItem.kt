@@ -14,13 +14,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import eu.meecolabs.heshunt.R
-import eu.meecolabs.heshunt.model.Card
 import eu.meecolabs.heshunt.model.CardCategory
+import eu.meecolabs.heshunt.model.CardWithStatus
 import androidx.compose.material3.Card as MaterialCard
 
 @Composable
 internal fun CardListItem(
-    card: Card,
+    item: CardWithStatus,
     onClick: () -> Unit,
     onToggle: () -> Unit
 ) {
@@ -34,13 +34,13 @@ internal fun CardListItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = card.name,
+                    text = item.card.name,
                     style = MaterialTheme.typography.titleMedium
                 )
 
                 Text(
-                    text = card.category.name,
-                    color = if (card.category == CardCategory.RARE) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant,
+                    text = item.card.category.name,
+                    color = if (item.card.category == CardCategory.RARE) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant,
                     fontWeight = FontWeight.Normal,
                     style = MaterialTheme.typography.bodySmall
                 )
@@ -50,7 +50,7 @@ internal fun CardListItem(
                 onClick = onToggle
             ) {
                 Text(
-                    text = if (card.isCollected) stringResource(R.string.status_collected) else stringResource(R.string.status_collect)
+                    text = if (item.card.isCollected) stringResource(R.string.status_collected) else stringResource(R.string.status_collect)
                 )
             }
         }

@@ -41,11 +41,11 @@ internal fun CardListContent(
                 SectionHeader(title = stringResource(R.string.section_available))
             }
 
-            items(state.available, key = { it.id }) { card ->
+            items(state.available, key = { it.card.id }) { item ->
                 CardListItem(
-                    card,
-                    onClick = { onCardClick(card.id) },
-                    onToggle = { onToggleCollected(card.id, true) }
+                    item,
+                    onClick = { onCardClick(item.card.id) },
+                    onToggle = { onToggleCollected(item.card.id, true) }
                 )
             }
         }
@@ -55,37 +55,39 @@ internal fun CardListContent(
                 SectionHeader(title = stringResource(R.string.section_upcoming))
             }
 
-            items(state.upcoming, key = { it.id }) { card ->
+            items(state.upcoming, key = { it.card.id }) { item ->
                 CardListItem(
-                    card,
-                    onClick = { onCardClick(card.id) },
-                    onToggle = { onToggleCollected(card.id, true) }
+                    item,
+                    onClick = { onCardClick(item.card.id) },
+                    onToggle = { onToggleCollected(item.card.id, true) }
                 )
             }
         }
+
         if (state.collected.isNotEmpty()) {
             stickyHeader {
                 SectionHeader(title = stringResource(R.string.section_collected))
             }
 
-            items(state.collected, key = { it.id }) { card ->
+            items(state.collected, key = { it.card.id }) { item ->
                 CardListItem(
-                    card,
-                    onClick = { onCardClick(card.id) },
-                    onToggle = { onToggleCollected(card.id, false) }
+                    item,
+                    onClick = { onCardClick(item.card.id) },
+                    onToggle = { onToggleCollected(item.card.id, false) }
                 )
             }
         }
+
         if (state.expired.isNotEmpty()) {
             stickyHeader {
                 SectionHeader(title = stringResource(R.string.section_expired))
             }
 
-            items(state.expired, key = { it.id }) { card ->
+            items(state.expired, key = { it.card.id }) { item ->
                 CardListItem(
-                    card,
-                    onClick = { onCardClick(card.id) },
-                    onToggle = { onToggleCollected(card.id, true) }
+                    item,
+                    onClick = { onCardClick(item.card.id) },
+                    onToggle = { onToggleCollected(item.card.id, true) }
                 )
             }
         }
