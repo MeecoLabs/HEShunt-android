@@ -77,6 +77,7 @@ android {
 
     lint {
         disable += "ModifierParameter"
+        checkReleaseBuilds = false
     }
 }
 

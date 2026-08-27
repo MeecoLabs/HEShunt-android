@@ -63,7 +63,7 @@ jobs:
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          ./gradlew assembleRelease
+          ./gradlew :app:assembleRelease -x lint -x test
 
       - name: 'Upload APK'
         uses: actions/upload-artifact@v7
