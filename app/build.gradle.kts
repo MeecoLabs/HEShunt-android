@@ -43,7 +43,7 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = System.getenv("ANDROID_KEYSTORE_FILE")?.let { File(it) }
+            storeFile = System.getenv("ANDROID_KEYSTORE_FILE")?.let { rootProject.file(it) }
             storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
             keyAlias = System.getenv("ANDROID_KEY_ALIAS")
             keyPassword = System.getenv("ANDROID_KEY_PASSWORD")
@@ -152,4 +152,10 @@ dependencies {
     testImplementation(libs.turbine)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+}
+
+tasks.register("printVersionName") {
+    doLast {
+        println(android.defaultConfig.versionName)
+    }
 }
