@@ -65,6 +65,10 @@ jobs:
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "tag=v$VERSION_NAME-b$VERSION_CODE" >> $GITHUB_OUTPUT
 
+      - name: 'Setup Config'
+        run: |
+          echo "${{ secrets.CONFIG }}" > app/config.properties
+
       - name: 'Build APK'
         env:
           ANDROID_KEYSTORE_FILE: ${{ github.workspace }}/keystore.jks
