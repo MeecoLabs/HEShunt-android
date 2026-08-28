@@ -1,8 +1,11 @@
 # HES Hunt
 
-A simple Android app to track Historic Environment Scotland’s History Hunt collectible cards.
+![GitHub License](https://img.shields.io/github/license/MeecoLabs/HEShunt-android?style=for-the-badge)
+![Homepage](https://img.shields.io/badge/homepage-blue?style=for-the-badge&link=https%3A%2F%2Fapps.meecolabs.eu%2Fhes-hunt)
+![F-Droid Version](https://img.shields.io/f-droid/v/eu.meecolabs.heshunt?baseUrl=https%3A%2F%2Fapps.meecolabs.eu%2Frepo&style=for-the-badge)
+![GitHub Release Date](https://img.shields.io/github/release-date/MeecoLabs/HEShunt-android?style=for-the-badge)
 
-[Homepage](https://apps.meecolabs/hes-hunt)
+A simple Android app to track Historic Environment Scotland’s History Hunt collectible cards.
 
 ## Features
 
@@ -51,5 +54,3 @@ Look out for the homepage and a custom F-Droid repository to appear.
 ## Disclaimer
 
 This application is not affiliated with, maintained, authorized, endorsed or sponsored by Historic Environment Scotland or any of its affiliates. This is an unofficial implementation.
-
-
