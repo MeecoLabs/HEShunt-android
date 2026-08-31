@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2026 MeecoLabs
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
 pluginManagement {
     repositories {
         google {
@@ -19,7 +24,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        mavenLocal()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
