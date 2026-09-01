@@ -2,7 +2,7 @@
 
 [![Homepage](https://img.shields.io/badge/homepage-blue?style=for-the-badge)](https://apps.meecolabs.eu/hes-hunt)
 [![GitHub License](https://img.shields.io/github/license/MeecoLabs/HEShunt-android?style=for-the-badge)](https://github.com/MeecoLabs/HEShunt-android/blob/main/LICENSE)
-![F-Droid Version](https://img.shields.io/f-droid/v/eu.meecolabs.heshunt?baseUrl=https%3A%2F%2Fapps.meecolabs.eu%2Frepo&style=for-the-badge)
+![F-Droid Repo](https://img.shields.io/badge/f--droid-custom_repo-blue?style=for-the-badge)
 [![GitHub Release](https://img.shields.io/github/v/release/MeecoLabs/HEShunt-android?style=for-the-badge)](https://github.com/MeecoLabs/HEShunt-android/releases/latest)
 
 A simple Android app to track Historic Environment Scotland’s History Hunt collectible cards.
