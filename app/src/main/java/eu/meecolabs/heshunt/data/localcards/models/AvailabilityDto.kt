@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-package eu.meecolabs.heshunt.data.cards.models
+package eu.meecolabs.heshunt.data.localcards.models
 
 import kotlinx.serialization.Serializable
 

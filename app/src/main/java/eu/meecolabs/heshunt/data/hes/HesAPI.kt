@@ -15,14 +15,11 @@ import org.koin.core.annotation.Single
 @Single
 class HesAPI(
     @Named("hes")
-    private val client: OkHttpClient
+    private val client: OkHttpClient,
+    private val json: Json
 ) {
     companion object {
         private const val URL = "https://inspire.hes.scot/arcgis/rest/services/HES/Properties_in_care_points/MapServer/0/query?where=1%3D1&outFields=*&f=geojson"
-    }
-
-    private val json = Json {
-        ignoreUnknownKeys = true
     }
 
     fun loadProperties(): GeoJsonDto {

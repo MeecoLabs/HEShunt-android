@@ -3,12 +3,13 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-package eu.meecolabs.heshunt.db
+package eu.meecolabs.heshunt.data.db.daos
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import eu.meecolabs.heshunt.data.db.entities.CollectedCardEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

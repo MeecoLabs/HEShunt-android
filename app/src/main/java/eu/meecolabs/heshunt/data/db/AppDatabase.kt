@@ -3,10 +3,12 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-package eu.meecolabs.heshunt.db
+package eu.meecolabs.heshunt.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import eu.meecolabs.heshunt.data.db.daos.CollectedCardDao
+import eu.meecolabs.heshunt.data.db.entities.CollectedCardEntity
 
 @Database(
     entities = [CollectedCardEntity::class],

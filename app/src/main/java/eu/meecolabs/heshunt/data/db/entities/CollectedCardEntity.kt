@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-package eu.meecolabs.heshunt.db
+package eu.meecolabs.heshunt.data.db.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

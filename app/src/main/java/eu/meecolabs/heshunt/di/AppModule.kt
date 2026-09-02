@@ -7,7 +7,8 @@ package eu.meecolabs.heshunt.di
 
 import android.content.Context
 import androidx.room.Room
-import eu.meecolabs.heshunt.db.AppDatabase
+import eu.meecolabs.heshunt.data.db.AppDatabase
+import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Configuration
@@ -19,6 +20,12 @@ import org.koin.core.annotation.Single
 @Configuration
 @ComponentScan("eu.meecolabs.heshunt")
 class AppModule {
+    @Single
+    fun provideJson(): Json =
+        Json {
+            ignoreUnknownKeys = true
+        }
+
     @Single
     fun provideDatabase(context: Context): AppDatabase =
         Room.databaseBuilder(

@@ -5,9 +5,9 @@
 
 package eu.meecolabs.heshunt.repositories
 
-import eu.meecolabs.heshunt.data.cards.LocalCards
-import eu.meecolabs.heshunt.db.AppDatabase
-import eu.meecolabs.heshunt.db.CollectedCardEntity
+import eu.meecolabs.heshunt.data.db.AppDatabase
+import eu.meecolabs.heshunt.data.db.entities.CollectedCardEntity
+import eu.meecolabs.heshunt.data.localcards.LocalCards
 import eu.meecolabs.heshunt.model.Availability
 import eu.meecolabs.heshunt.model.Card
 import eu.meecolabs.heshunt.model.CardCategory
