@@ -138,6 +138,7 @@ fun CardDetailScreen(
                     item = state.card,
                     availableAt = state.availableAt,
                     allSites = state.allSites,
+                    collectedAt = state.collectedAt,
                     modifier = contentModifier
                 )
             }

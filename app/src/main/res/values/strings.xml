@@ -43,6 +43,7 @@
     <string name="card_map_filter_expired">Expired</string>
     <string name="card_map_filter_upcoming">Upcoming</string>
     <string name="card_collected_on">Collected on %s</string>
+    <string name="card_collected_on_from">Collected on %s from %s</string>
     <string name="card_collected_from">Collected from %s</string>
 
     <!-- Edit Collect -->

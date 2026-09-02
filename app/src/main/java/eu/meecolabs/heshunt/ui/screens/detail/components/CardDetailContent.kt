@@ -54,7 +54,8 @@ internal fun CardDetailContent(
     item: CardWithStatus,
     availableAt: List<Property>,
     allSites: List<Property>,
-    modifier: Modifier = Modifier
+    collectedAt: Property?,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val navInsets = WindowInsets.navigationBars.asPaddingValues()
@@ -100,11 +101,18 @@ internal fun CardDetailContent(
                     }
                 }
 
-                item.card.collectedOn?.let { collectedAt ->
+                item.card.collectedOn?.let { collectedOn ->
                     Spacer(modifier = Modifier.height(16.dp))
 
+                    val text = collectedAt?.let { property ->
+                        stringResource(
+                            R.string.card_collected_on_from,
+                            collectedOn.format(dateFormatter),
+                            property.name
+                        )
+                    } ?: stringResource(R.string.card_collected_on, collectedOn.format(dateFormatter))
                     Text(
-                        text = stringResource(R.string.card_collected_on, collectedAt.format(dateFormatter)),
+                        text = text,
                         fontWeight = FontWeight.Light
                     )
                 }

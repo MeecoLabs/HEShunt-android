@@ -33,7 +33,8 @@ internal sealed interface UiState {
     data class Success(
         val card: CardWithStatus,
         val availableAt: List<Property>,
-        val allSites: List<Property>
+        val allSites: List<Property>,
+        val collectedAt: Property?
     ) : UiState
 }
 
@@ -58,7 +59,8 @@ class CardDetailViewModel(
             val now = timeProvider.now()
             val availableAt = properties.filter { card.isAvailableAt(it.id, now) }
             val allSites = properties.filter { card.isAssociatedWith(it.id) }
-            UiState.Success(card.withStatus(now), availableAt, allSites)
+            val collectedAt = properties.firstOrNull { card.collectedAt == it.id }
+            UiState.Success(card.withStatus(now), availableAt, allSites, collectedAt)
         }
     }.stateIn(
         scope = viewModelScope,
