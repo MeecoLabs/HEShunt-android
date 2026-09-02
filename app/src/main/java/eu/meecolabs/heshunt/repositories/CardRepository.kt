@@ -15,7 +15,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import org.koin.core.annotation.Single
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 
 interface CardRepository {
     fun getCards(): Flow<List<Card>>
@@ -39,7 +41,10 @@ class CardRepositoryImpl(
                     category = if (dto.category.lowercase() == "rare") CardCategory.RARE else CardCategory.MAIN,
                     description = dto.description,
                     siteIds = dto.siteIds,
-                    isCollected = collected.any { it.cardId == dto.id },
+                    collectedAt = collected.firstOrNull { it.cardId == dto.id }?.collectedAt?.let {
+                        Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()).toLocalDate()
+                    },
+                    // isCollected = collected.any { it.cardId == dto.id },
                     availability = dto.availability?.map {
                         Availability(
                             from = LocalDate.parse(it.from),

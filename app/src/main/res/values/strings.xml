@@ -1,3 +1,8 @@
+<!--
+  ~ Copyright (c) 2026 MeecoLabs
+  ~ SPDX-License-Identifier: GPL-3.0-only
+  -->
+
 <resources>
     <!-- Global -->
     <string name="app_name">HES Hunt</string>
@@ -29,6 +34,8 @@
     <string name="card_map_filter_missing">Missing</string>
     <string name="card_map_filter_expired">Expired</string>
     <string name="card_map_filter_upcoming">Upcoming</string>
+    <string name="card_collected_on">Collected on %s</string>
+    <string name="card_collected_from">Collected from %s</string>
 
     <!-- Property / Popup -->
     <string name="property_not_available">Not available here currently</string>
