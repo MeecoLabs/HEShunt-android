@@ -23,8 +23,13 @@
     <string name="about_github_label">GitHub Repository</string>
 
     <!-- Card Detail Screen -->
-    <string name="card_details_title">Card Details</string>
+    <string name="card_details_loading_title">Loading…</string>
+    <string name="card_details_error_title">Error</string>
+    <string name="card_edit_cd">Edit card collection details</string>
+    <string name="card_remove_cd">Remove card from collection</string>
     <string name="card_availability_periods">Availability Periods:</string>
+    <string name="card_edit_collected">Edit</string>
+    <string name="card_remove_collected">Remove</string>
     <string name="card_mark_missing">Mark as Missing</string>
     <string name="card_mark_collected">Mark as Collected</string>
     <string name="card_available_at">Available At:</string>

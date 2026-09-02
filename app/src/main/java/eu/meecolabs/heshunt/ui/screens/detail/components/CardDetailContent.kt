@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -38,13 +37,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import eu.meecolabs.heshunt.R
 import eu.meecolabs.heshunt.model.CardStatus
 import eu.meecolabs.heshunt.model.CardWithStatus
 import eu.meecolabs.heshunt.model.Property
+import eu.meecolabs.heshunt.ui.components.CardCategoryBadge
 import eu.meecolabs.heshunt.ui.components.PropertyPopup
+import eu.meecolabs.heshunt.util.dateFormatter
 import java.time.format.DateTimeFormatter
 
 @Composable
@@ -52,7 +54,6 @@ internal fun CardDetailContent(
     item: CardWithStatus,
     availableAt: List<Property>,
     allSites: List<Property>,
-    onToggleCollected: (Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -69,29 +70,18 @@ internal fun CardDetailContent(
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalAlignment = Alignment.Top,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = item.card.name,
-                        style = MaterialTheme.typography.headlineMedium,
+                        text = item.card.description,
+                        style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier.weight(1f)
                     )
 
-                    StatusBadge(item.status)
+                    CardCategoryBadge(item.card.category)
                 }
-
-                Text(
-                    text = item.card.category.name,
-                    style = MaterialTheme.typography.titleMedium
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = item.card.description,
-                    style = MaterialTheme.typography.bodyLarge
-                )
 
                 if (item.card.availability.isNotEmpty()) {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -110,14 +100,12 @@ internal fun CardDetailContent(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                item.card.collectedAt?.let { collectedAt ->
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                Button(
-                    onClick = { onToggleCollected(!item.card.isCollected) },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
                     Text(
-                        text = if (item.card.isCollected) stringResource(R.string.status_collected) else stringResource(R.string.status_collect)
+                        text = stringResource(R.string.card_collected_on, collectedAt.format(dateFormatter)),
+                        fontWeight = FontWeight.Light
                     )
                 }
             }
