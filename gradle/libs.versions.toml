@@ -17,7 +17,7 @@ nav3Core = "1.1.7"
 lifecycleViewmodelNav3 = "2.11.0"
 kotlinSerialization = "2.4.10"
 kotlinxSerialization = "1.11.0"
-koin-bom = "4.2.2"
+koinBom = "4.2.2"
 koinPlugin = "1.1.0"
 jetbrainsKotlinJvm = "2.4.10"
 appUpdates = "main-SNAPSHOT"
@@ -54,7 +54,7 @@ androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", vers
 androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
-koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBom" }
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-annotations = { module = "io.insert-koin:koin-annotations"}
