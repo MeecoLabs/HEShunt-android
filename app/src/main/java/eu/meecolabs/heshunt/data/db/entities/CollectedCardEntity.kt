@@ -12,5 +12,6 @@ import androidx.room.PrimaryKey
 data class CollectedCardEntity(
     @PrimaryKey
     val cardId: String,
-    val collectedAt: Long
+    val collectedAt: Long,
+    val collectedFrom: String? = null
 )
