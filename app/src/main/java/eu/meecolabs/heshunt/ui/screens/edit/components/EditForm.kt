@@ -161,6 +161,20 @@ fun EditForm(
                     showPropertySelector = false
                 }
             ) {
+                if (property != null) {
+                    DropdownMenuItem(
+                        onClick = {
+                            onSetProperty(null)
+                            showPropertySelector = false
+                        },
+                        text = {
+                            Text(
+                                text = stringResource(R.string.edit_collect_unset_property)
+                            )
+                        }
+                    )
+                }
+
                 Text(
                     text = stringResource(R.string.edit_collect_property_available_title),
                     style = MaterialTheme.typography.bodyLarge,

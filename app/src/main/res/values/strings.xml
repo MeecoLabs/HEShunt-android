@@ -53,6 +53,7 @@
     <string name="edit_collected_on_placeholder">No date set</string>
     <string name="edit_collected_at_label">Collected at property</string>
     <string name="edit_collected_at_placeholder">No property selected</string>
+    <string name="edit_collect_unset_property">Unset Property</string>
     <string name="edit_collect_property_available_title">Available at</string>
     <string name="edit_collect_other_sites_title">Other sites</string>
 
