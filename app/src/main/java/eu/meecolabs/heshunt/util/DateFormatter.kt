@@ -8,4 +8,6 @@ package eu.meecolabs.heshunt.util
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
-val dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+
+val dateLongFormatter: DateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)

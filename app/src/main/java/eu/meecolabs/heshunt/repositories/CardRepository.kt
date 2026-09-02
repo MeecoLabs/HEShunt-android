@@ -11,6 +11,7 @@ import eu.meecolabs.heshunt.data.localcards.LocalCards
 import eu.meecolabs.heshunt.model.Availability
 import eu.meecolabs.heshunt.model.Card
 import eu.meecolabs.heshunt.model.CardCategory
+import eu.meecolabs.heshunt.model.Property
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
@@ -23,6 +24,8 @@ interface CardRepository {
     fun getCards(): Flow<List<Card>>
 
     suspend fun toggleCardCollected(cardId: String, isCollected: Boolean)
+
+    suspend fun updateCollected(cardId: String, date: Long, property: Property?)
 }
 
 @Single(binds = [CardRepository::class])
@@ -35,16 +38,17 @@ class CardRepositoryImpl(
 
         return database.collectedCardDao().getAllCollectedCards().combine(flow { emit(cardDtos) }) { collected, dtos ->
             dtos.map { dto ->
+                val collectionInfo = collected.firstOrNull { it.cardId == dto.id }
                 Card(
                     id = dto.id,
                     name = dto.name,
                     category = if (dto.category.lowercase() == "rare") CardCategory.RARE else CardCategory.MAIN,
                     description = dto.description,
                     siteIds = dto.siteIds,
-                    collectedAt = collected.firstOrNull { it.cardId == dto.id }?.collectedAt?.let {
+                    collectedOn = collectionInfo?.collectedAt?.let {
                         Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()).toLocalDate()
                     },
-                    // isCollected = collected.any { it.cardId == dto.id },
+                    collectedAt = collectionInfo?.collectedFrom,
                     availability = dto.availability?.map {
                         Availability(
                             from = LocalDate.parse(it.from),
@@ -63,5 +67,9 @@ class CardRepositoryImpl(
         } else {
             database.collectedCardDao().delete(cardId)
         }
+    }
+
+    override suspend fun updateCollected(cardId: String, date: Long, property: Property?) {
+        database.collectedCardDao().update(CollectedCardEntity(cardId, date, property?.id))
     }
 }

@@ -100,7 +100,7 @@ internal fun CardDetailContent(
                     }
                 }
 
-                item.card.collectedAt?.let { collectedAt ->
+                item.card.collectedOn?.let { collectedAt ->
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Text(

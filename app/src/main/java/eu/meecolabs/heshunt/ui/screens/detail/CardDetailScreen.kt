@@ -38,6 +38,7 @@ import org.koin.core.parameter.parametersOf
 @Composable
 fun CardDetailScreen(
     cardId: String,
+    onEdit: () -> Unit,
     onBackClick: () -> Unit,
     viewModel: CardDetailViewModel = koinViewModel { parametersOf(cardId) }
 ) {
@@ -91,7 +92,7 @@ fun CardDetailScreen(
                     if (state is UiState.Success) {
                         if (state.card.card.isCollected) {
                             IconButton(
-                                onClick = { /* TODO */ }
+                                onClick = onEdit
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_edit),

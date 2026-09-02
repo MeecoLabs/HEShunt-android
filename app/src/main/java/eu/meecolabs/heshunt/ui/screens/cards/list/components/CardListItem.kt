@@ -53,7 +53,7 @@ internal fun CardListItem(
                     CardCategoryBadge(item.card.category)
                 }
 
-                item.card.collectedAt?.let { collectedAt ->
+                item.card.collectedOn?.let { collectedAt ->
                     Text(
                         text = stringResource(R.string.card_collected_on, collectedAt.format(dateFormatter)),
                         style = MaterialTheme.typography.bodyMedium,

@@ -13,11 +13,12 @@ data class Card(
     val category: CardCategory,
     val description: String,
     val siteIds: List<String>,
-    val collectedAt: LocalDate?,
+    val collectedOn: LocalDate?,
+    val collectedAt: String?,
     val availability: List<Availability> = emptyList()
 ) {
     val isCollected: Boolean
-        get() = collectedAt != null
+        get() = collectedOn != null
 
     fun getStatus(date: LocalDate): CardStatus {
         if (availability.isEmpty()) {

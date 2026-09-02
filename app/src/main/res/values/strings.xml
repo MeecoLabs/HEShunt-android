@@ -7,6 +7,9 @@
     <!-- Global -->
     <string name="app_name">HES Hunt</string>
     <string name="back_button">Back</string>
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="cancel_cd">Cancel</string>
 
     <!-- Cards Screen -->
     <string name="cards_view_list">List</string>
@@ -41,6 +44,16 @@
     <string name="card_map_filter_upcoming">Upcoming</string>
     <string name="card_collected_on">Collected on %s</string>
     <string name="card_collected_from">Collected from %s</string>
+
+    <!-- Edit Collect -->
+    <string name="edit_collect_title">Edit Collect Details</string>
+    <string name="edit_collect_save_action">Save Details</string>
+    <string name="edit_collected_on_label">Collected on day</string>
+    <string name="edit_collected_on_placeholder">No date set</string>
+    <string name="edit_collected_at_label">Collected at property</string>
+    <string name="edit_collected_at_placeholder">No property selected</string>
+    <string name="edit_collect_property_available_title">Available at</string>
+    <string name="edit_collect_other_sites_title">Other sites</string>
 
     <!-- Property / Popup -->
     <string name="property_not_available">Not available here currently</string>
