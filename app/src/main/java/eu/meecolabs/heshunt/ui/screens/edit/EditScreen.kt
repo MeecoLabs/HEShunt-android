@@ -63,7 +63,7 @@ fun EditScreen(
                             }
                         ) {
                             Icon(
-                                painter = painterResource(R.drawable.ic_save),
+                                painter = painterResource(R.drawable.ic_checkmark),
                                 contentDescription = stringResource(R.string.edit_collect_save_action)
                             )
                         }

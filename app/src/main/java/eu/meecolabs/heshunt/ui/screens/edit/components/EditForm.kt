@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -33,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import eu.meecolabs.heshunt.R
@@ -109,6 +111,12 @@ fun EditForm(
                     text = stringResource(R.string.edit_collected_on_placeholder)
                 )
             },
+            trailingIcon = {
+                Icon(
+                    painter = painterResource(R.drawable.ic_calendar),
+                    contentDescription = stringResource(R.string.edit_collected_on_cd)
+                )
+            },
             enabled = true,
             readOnly = true,
             modifier = Modifier
@@ -138,6 +146,12 @@ fun EditForm(
                 placeholder = {
                     Text(
                         text = stringResource(R.string.edit_collected_at_placeholder)
+                    )
+                },
+                trailingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_dropdown),
+                        contentDescription = stringResource(R.string.edit_collected_at_cd)
                     )
                 },
                 enabled = true,
@@ -181,16 +195,24 @@ fun EditForm(
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
                 )
 
-                availableAt.forEach { property ->
+                availableAt.forEach { site ->
                     DropdownMenuItem(
                         onClick = {
-                            onSetProperty(property)
+                            onSetProperty(site)
                             showPropertySelector = false
                         },
                         text = {
                             Text(
-                                text = property.name
+                                text = site.name
                             )
+                        },
+                        trailingIcon = {
+                            if (property == site) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_checkmark),
+                                    contentDescription = stringResource(R.string.selected_property)
+                                )
+                            }
                         }
                     )
                 }
@@ -201,16 +223,24 @@ fun EditForm(
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
                 )
 
-                allSites.forEach { property ->
+                allSites.forEach { site ->
                     DropdownMenuItem(
                         onClick = {
-                            onSetProperty(property)
+                            onSetProperty(site)
                             showPropertySelector = false
                         },
                         text = {
                             Text(
-                                text = property.name
+                                text = site.name
                             )
+                        },
+                        trailingIcon = {
+                            if (property == site) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_checkmark),
+                                    contentDescription = stringResource(R.string.selected_property)
+                                )
+                            }
                         }
                     )
                 }
