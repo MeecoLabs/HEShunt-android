@@ -1,5 +1,5 @@
 [versions]
-agp = "9.3.2"
+agp = "9.4.0"
 spatialk = "0.7.0"
 maplibre = "0.15.0"
 coreKtx = "1.19.0"
