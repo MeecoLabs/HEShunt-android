@@ -23,6 +23,7 @@ import org.koin.core.annotation.InjectedParam
 import org.koin.core.annotation.KoinViewModel
 import java.time.LocalDate
 import java.time.ZoneId
+import kotlin.time.Duration.Companion.seconds
 
 internal sealed interface UiState {
     data object Loading : UiState
@@ -66,7 +67,7 @@ class EditScreenViewModel(
         }
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
         initialValue = UiState.Loading
     )
 
@@ -75,6 +76,16 @@ class EditScreenViewModel(
 
     private val _property = MutableStateFlow<Property?>(null)
     val property = _property.asStateFlow()
+
+    val hasChanged: StateFlow<Boolean> = combine(uiState, date, property) { state, currentDate, currentProperty ->
+        val successState = state as? UiState.Success
+            ?: return@combine false
+        successState.card.collectedOn != currentDate || successState.card.collectedAt != currentProperty?.id
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
+        initialValue = false
+    )
 
     init {
         loadProperties()

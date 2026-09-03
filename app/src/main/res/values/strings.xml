@@ -59,6 +59,10 @@
     <string name="selected_property">Currently selected property</string>
     <string name="edit_collect_property_available_title">Available at</string>
     <string name="edit_collect_other_sites_title">Other sites</string>
+    <string name="edit_collect_confirm_dismiss_title">Dismiss changes?</string>
+    <string name="edit_collect_confirm_dismiss_description">You will lose all changes you made.</string>
+    <string name="edit_collect_confirm_dismiss_confirm">Yes, dismiss</string>
+    <string name="edit_collect_confirm_dismiss_cancel">Keep editing</string>
 
     <!-- Property / Popup -->
     <string name="property_not_available">Not available here currently</string>
