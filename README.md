@@ -14,6 +14,13 @@ A simple Android app to track Historic Environment Scotland’s History Hunt col
   - Filter map to show only properties where missing cards can be found.
 - Direct links to property websites for opening times.
 
+## Screenshots
+
+![Home Map Screen](https://apps.meecolabs.eu/repo/eu.meecolabs.heshunt/screenshots/01_home_list.png)
+![Home List Screen](https://apps.meecolabs.eu/repo/eu.meecolabs.heshunt/screenshots/02_home_map.png)
+![Card Details Screen](https://apps.meecolabs.eu/repo/eu.meecolabs.heshunt/screenshots/03_card_details.png)
+![Edit Collect Details Screen](https://apps.meecolabs.eu/repo/eu.meecolabs.heshunt/screenshots/04_edit_collect.png)
+
 ## Data Sources
 
 ### History Hunt Cards
