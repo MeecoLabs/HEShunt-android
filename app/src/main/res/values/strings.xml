@@ -39,9 +39,13 @@
     <string name="card_show_list">Show List</string>
     <string name="card_show_map">Show Map</string>
     <string name="card_map_filter_all">All</string>
-    <string name="card_map_filter_missing">Missing</string>
-    <string name="card_map_filter_expired">Expired</string>
-    <string name="card_map_filter_upcoming">Upcoming</string>
+    <string name="card_map_filter_available_missing">Available missing</string>
+    <string name="card_map_filter_upcoming_missing">Upcoming missing</string>
+    <string name="card_map_filter_expired_missing">Expired missing</string>
+    <string name="card_map_filter_all_missing">All missing</string>
+    <string name="card_map_filter_collected">Collected</string>
+    <string name="card_map_filter_include_expired">Include expired</string>
+    <string name="card_map_filter_include_upcoming">Include upcoming</string>
     <string name="card_collected_on">Collected on %s</string>
     <string name="card_collected_on_from">Collected on %s from %s</string>
     <string name="card_collected_from">Collected from %s</string>

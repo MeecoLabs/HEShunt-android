@@ -8,13 +8,28 @@ package eu.meecolabs.heshunt.ui.screens.cards
 import androidx.annotation.StringRes
 import eu.meecolabs.heshunt.R
 import eu.meecolabs.heshunt.model.CardStatus
+import eu.meecolabs.heshunt.model.CardWithStatus
 
 internal enum class MapFilter(
     @get:StringRes val labelRes: Int,
-    val targetStatus: CardStatus? = null
+    val filter: (item: CardWithStatus) -> Boolean
 ) {
-    All(R.string.card_map_filter_all),
-    Missing(R.string.card_map_filter_missing, CardStatus.ACTIVE),
-    Expired(R.string.card_map_filter_expired, CardStatus.EXPIRED),
-    Upcoming(R.string.card_map_filter_upcoming, CardStatus.UPCOMING)
+    ALL(R.string.card_map_filter_all, filter = {
+        true
+    }),
+    AVAILABLE_MISSING(R.string.card_map_filter_available_missing, filter = { (card, status) ->
+        !card.isCollected && status != CardStatus.EXPIRED
+    }),
+    UPCOMING_MISSING(R.string.card_map_filter_upcoming_missing, filter = { (card, status) ->
+        !card.isCollected && status == CardStatus.UPCOMING
+    }),
+    EXPIRED_MISSING(R.string.card_map_filter_expired_missing, filter = { (card, status) ->
+        !card.isCollected && status == CardStatus.EXPIRED
+    }),
+    ALL_MISSING(R.string.card_map_filter_all_missing, filter = { (card, _) ->
+        !card.isCollected
+    }),
+    COLLECTED(R.string.card_map_filter_collected, filter = { (card, _) ->
+        card.isCollected
+    })
 }

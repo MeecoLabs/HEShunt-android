@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.koin.core.annotation.KoinViewModel
+import kotlin.time.Duration.Companion.seconds
 
 internal sealed interface UiState {
     data object Loading : UiState
@@ -50,7 +51,7 @@ internal class CardsViewModel(
     private val _currentView = MutableStateFlow(CardsView.List)
     val currentView = _currentView.asStateFlow()
 
-    private val _mapFilter = MutableStateFlow(MapFilter.Missing)
+    private val _mapFilter = MutableStateFlow(MapFilter.ALL_MISSING)
     val mapFilter  = _mapFilter.asStateFlow()
 
     private val _showMapFilter = MutableStateFlow(false)
@@ -62,26 +63,17 @@ internal class CardsViewModel(
     internal val uiState: StateFlow<UiState> = combine(
         _properties,
         getCardsUseCase(),
-        _mapFilter
+        _mapFilter,
     ) { properties, cards, mapFilter ->
         val now = timeProvider.now()
 
         val allWithStatus = cards.map { it.withStatus(now) }.sortedByStatus()
 
-        val filteredProperties = when (mapFilter) {
-            MapFilter.All -> {
-                val propertyIdsWithCards = cards.flatMap { it.siteIds + it.availability.flatMap { a -> a.siteIds ?: emptyList() } }.toSet()
-                properties.filter { propertyIdsWithCards.contains(it.id) }
-            }
-
-            else -> {
-                val filteredCardSiteIds = allWithStatus.filter { !it.card.isCollected && it.status == mapFilter.targetStatus }
-                    .flatMap { card ->
-                        card.card.siteIds + card.card.availability.flatMap { it.siteIds ?: emptyList() }
-                    }.toSet()
-                properties.filter { filteredCardSiteIds.contains(it.id) }
-            }
-        }
+        val filteredCardSiteIds = allWithStatus.filter { mapFilter.filter(it) }
+            .flatMap { card ->
+                card.card.siteIds + card.card.availability.flatMap { it.siteIds ?: emptyList() }
+            }.toSet()
+        val filteredProperties = properties.filter { filteredCardSiteIds.contains(it.id) }
 
         UiState.Success(
             available = allWithStatus.filter { !it.card.isCollected && it.status == CardStatus.ACTIVE },
@@ -93,7 +85,7 @@ internal class CardsViewModel(
         )
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
         initialValue = UiState.Loading
     )
 
