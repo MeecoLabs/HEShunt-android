@@ -10,8 +10,8 @@ import eu.meecolabs.heshunt.data.db.entities.CollectedCardEntity
 import eu.meecolabs.heshunt.data.localcards.LocalCards
 import eu.meecolabs.heshunt.model.Availability
 import eu.meecolabs.heshunt.model.Card
-import eu.meecolabs.heshunt.model.CardCategory
 import eu.meecolabs.heshunt.model.Property
+import eu.meecolabs.heshunt.model.toModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
@@ -42,7 +42,7 @@ class CardRepositoryImpl(
                 Card(
                     id = dto.id,
                     name = dto.name,
-                    category = if (dto.category.lowercase() == "rare") CardCategory.RARE else CardCategory.MAIN,
+                    category = dto.category.toModel(),
                     description = dto.description,
                     siteIds = dto.siteIds,
                     collectedOn = collectionInfo?.collectedAt?.let {

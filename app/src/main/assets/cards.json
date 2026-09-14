@@ -155,7 +155,7 @@
   {
     "id": "gardens",
     "name": "Flourishing Gardens",
-    "category": "rare",
+    "category": "seasonal",
     "description": "Sites featuring notable historic gardens.",
     "siteIds": ["PIC111", "PIC001", "PIC016", "PIC139", "PIC141", "PIC027", "PIC069"],
     "availability": [
@@ -168,7 +168,7 @@
   {
     "id": "traveller",
     "name": "Good Traveller",
-    "category": "rare",
+    "category": "seasonal",
     "description": "Awarded for car-free arrival at selected sites.",
     "siteIds": ["PIC001", "PIC228", "PIC292", "PIC129", "PIC055", "PIC134", "PIC061", "PIC239", "PIC120", "PIC065", "PIC243", "PIC332", "PIC071", "PIC247", "PIC249", "PIC155", "PIC209", "PIC122", "PIC043", "PIC111", "PIC272", "PIC273"],
     "availability": [
@@ -181,7 +181,7 @@
   {
     "id": "summer-champions",
     "name": "Summer of Champions!",
-    "category": "rare",
+    "category": "seasonal",
     "description": "Collect these rare cards during the Commonwealth Games and Football World Cup.",
     "siteIds": ["PIC182", "PIC141", "PIC195", "PIC121", "PIC196", "PIC149", "PIC150", "PIC204", "PIC157", "PIC209", "PIC161", "PIC217", "PIC220"],
     "availability": [
@@ -194,7 +194,7 @@
   {
     "id": "northern-wanderer",
     "name": "Northern Wanderer",
-    "category": "rare",
+    "category": "seasonal",
     "description": "Collect your rare Northern Wanderer card before they run out.",
     "siteIds": ["PIC227", "PIC275", "PIC293", "PIC277", "PIC228", "PIC332", "PIC306", "PIC305", "PIC314"],
     "availability": [
@@ -207,7 +207,7 @@
   {
     "id": "southern-explorer",
     "name": "Southern Explorer",
-    "category": "rare",
+    "category": "seasonal",
     "description": "Collect your rare Southern Explorer card before they run out.",
     "siteIds": ["PIC182", "PIC141", "PIC195", "PIC196", "PIC149", "PIC150", "PIC204", "PIC157", "PIC209", "PIC161", "PIC217", "PIC220"],
     "availability": [
@@ -220,7 +220,7 @@
   {
     "id": "wise-women",
     "name": "Wise Women",
-    "category": "rare",
+    "category": "seasonal",
     "description": "Honouring inspirational historic women.",
     "siteIds": ["PIC227", "PIC016", "PIC134", "PIC120", "PIC195", "PIC023", "PIC222", "PIC027", "PIC121", "PIC149", "PIC073", "PIC150", "PIC155", "PIC030", "PIC263", "PIC034", "PIC111", "PIC216", "PIC217", "PIC220"],
     "availability": [
@@ -233,7 +233,7 @@
   {
     "id": "sprightly-spring",
     "name": "Sprightly Spring",
-    "category": "rare",
+    "category": "seasonal",
     "description": "Seasonal rare card for Easter Trail events.",
     "siteIds": ["PIC001", "PIC272", "PIC273", "PIC227", "PIC275", "PIC293", "PIC129", "PIC182", "PIC016", "PIC134", "PIC139", "PIC061", "PIC141", "PIC239", "PIC120", "PIC065", "PIC243", "PIC332", "PIC071", "PIC247", "PIC150", "PIC155", "PIC157", "PIC209", "PIC034", "PIC043", "PIC111", "PIC216", "PIC164", "PIC225", "PIC323"],
     "availability": [

@@ -19,15 +19,17 @@ fun CardCategoryBadge(
     category: CardCategory,
     modifier: Modifier = Modifier
 ) {
+    val (containerColor, contentColor) = when (category) {
+        CardCategory.RARE -> Pair(MaterialTheme.colorScheme.tertiary, MaterialTheme.colorScheme.onTertiary)
+
+        CardCategory.SEASONAL -> Pair(MaterialTheme.colorScheme.secondary, MaterialTheme.colorScheme.onSecondary)
+
+        CardCategory.MAIN -> Pair(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+
     Badge(
-        containerColor = if (category == CardCategory.RARE)
-            MaterialTheme.colorScheme.tertiary
-        else
-            MaterialTheme.colorScheme.surfaceVariant,
-        contentColor = if (category == CardCategory.RARE)
-            MaterialTheme.colorScheme.onTertiary
-        else
-            MaterialTheme.colorScheme.onSurfaceVariant,
+        containerColor = containerColor,
+        contentColor = contentColor,
         modifier = modifier
     ) {
         Text(
