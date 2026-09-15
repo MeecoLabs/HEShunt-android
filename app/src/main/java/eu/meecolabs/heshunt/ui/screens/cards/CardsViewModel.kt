@@ -7,9 +7,10 @@ package eu.meecolabs.heshunt.ui.screens.cards
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import eu.meecolabs.heshunt.model.CardStatus
+import eu.meecolabs.heshunt.model.CardSection
 import eu.meecolabs.heshunt.model.CardWithStatus
 import eu.meecolabs.heshunt.model.Property
+import eu.meecolabs.heshunt.model.SectionFilter
 import eu.meecolabs.heshunt.model.sortedByStatus
 import eu.meecolabs.heshunt.model.withStatus
 import eu.meecolabs.heshunt.repositories.PropertyRepository
@@ -30,10 +31,7 @@ internal sealed interface UiState {
     data object Loading : UiState
 
     data class Success(
-        val available: List<CardWithStatus>,
-        val upcoming: List<CardWithStatus>,
-        val collected: List<CardWithStatus>,
-        val expired: List<CardWithStatus>,
+        val sections: List<CardSection>,
         val allCards: List<CardWithStatus>,
         val properties: List<Property>
     ) : UiState
@@ -75,11 +73,15 @@ internal class CardsViewModel(
             }.toSet()
         val filteredProperties = properties.filter { filteredCardSiteIds.contains(it.id) }
 
+        val sections = SectionFilter.entries.map {
+            CardSection(
+                titleRes = it.titleRes,
+                cards = allWithStatus.filter { card -> it.filter(card) }
+            )
+        }
+
         UiState.Success(
-            available = allWithStatus.filter { !it.card.isCollected && it.status == CardStatus.ACTIVE },
-            upcoming = allWithStatus.filter { !it.card.isCollected && it.status == CardStatus.UPCOMING },
-            collected = allWithStatus.filter { it.card.isCollected },
-            expired = allWithStatus.filter { !it.card.isCollected && it.status == CardStatus.EXPIRED },
+            sections = sections,
             allCards = allWithStatus,
             properties = filteredProperties
         )

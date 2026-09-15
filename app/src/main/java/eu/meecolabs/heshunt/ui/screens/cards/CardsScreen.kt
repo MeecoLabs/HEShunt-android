@@ -137,7 +137,7 @@ internal fun CardsScreen(
                 when (currentView) {
                     CardsView.List ->
                         CardListContent(
-                            state = state,
+                            sections = state.sections,
                             onCardClick = onCardClick,
                             onToggleCollected = { id, collected ->
                                 viewModel.toggleCollected(id, collected)

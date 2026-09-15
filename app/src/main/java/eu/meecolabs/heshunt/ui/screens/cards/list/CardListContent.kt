@@ -17,14 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import eu.meecolabs.heshunt.R
-import eu.meecolabs.heshunt.ui.screens.cards.UiState
+import eu.meecolabs.heshunt.model.CardSection
 import eu.meecolabs.heshunt.ui.screens.cards.list.components.CardListItem
 import eu.meecolabs.heshunt.ui.screens.cards.list.components.SectionHeader
 
 @Composable
 internal fun CardListContent(
-    state: UiState.Success,
+    sections: List<CardSection>,
     onCardClick: (String) -> Unit,
     onToggleCollected: (String, Boolean) -> Unit,
     modifier: Modifier = Modifier
@@ -41,59 +40,19 @@ internal fun CardListContent(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier.fillMaxSize()
     ) {
-        if (state.available.isNotEmpty()) {
-            stickyHeader {
-                SectionHeader(title = stringResource(R.string.section_available))
-            }
+        sections.forEach { section ->
+            if (section.cards.isNotEmpty()) {
+                stickyHeader {
+                    SectionHeader(title = stringResource(section.titleRes))
+                }
 
-            items(state.available, key = { it.card.id }) { item ->
-                CardListItem(
-                    item,
-                    onClick = { onCardClick(item.card.id) },
-                    onToggle = { onToggleCollected(item.card.id, true) }
-                )
-            }
-        }
-
-        if (state.upcoming.isNotEmpty()) {
-            stickyHeader {
-                SectionHeader(title = stringResource(R.string.section_upcoming))
-            }
-
-            items(state.upcoming, key = { it.card.id }) { item ->
-                CardListItem(
-                    item,
-                    onClick = { onCardClick(item.card.id) },
-                    onToggle = { onToggleCollected(item.card.id, true) }
-                )
-            }
-        }
-
-        if (state.collected.isNotEmpty()) {
-            stickyHeader {
-                SectionHeader(title = stringResource(R.string.section_collected))
-            }
-
-            items(state.collected, key = { it.card.id }) { item ->
-                CardListItem(
-                    item,
-                    onClick = { onCardClick(item.card.id) },
-                    onToggle = { onToggleCollected(item.card.id, false) }
-                )
-            }
-        }
-
-        if (state.expired.isNotEmpty()) {
-            stickyHeader {
-                SectionHeader(title = stringResource(R.string.section_expired))
-            }
-
-            items(state.expired, key = { it.card.id }) { item ->
-                CardListItem(
-                    item,
-                    onClick = { onCardClick(item.card.id) },
-                    onToggle = { onToggleCollected(item.card.id, true) }
-                )
+                items(section.cards, key = { it.card.id }) { item ->
+                    CardListItem(
+                        item,
+                        onClick = { onCardClick(item.card.id) },
+                        onToggle = { onToggleCollected(item.card.id, !item.card.isCollected) }
+                    )
+                }
             }
         }
     }
