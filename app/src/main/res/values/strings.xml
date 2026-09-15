@@ -47,7 +47,7 @@
     <string name="card_map_filter_include_expired">Include expired</string>
     <string name="card_map_filter_include_upcoming">Include upcoming</string>
     <string name="card_collected_on">Collected on %s</string>
-    <string name="card_collected_on_from">Collected on %s from %s</string>
+    <string name="card_collected_on_from">Collected on %1$s from %2$s</string>
     <string name="card_collected_from">Collected from %s</string>
 
     <!-- Edit Collect -->
