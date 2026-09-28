@@ -21,6 +21,8 @@ This app is a personal tool to track Historic Environment Scotland’s History H
 - **Testing**: Prioritize unit tests in `test` folder. No manual UI testing by agent.
 - **DI**: Prefer Koin annotations (`@Single`, `@Factory`, `@KoinViewModel`).
 - **cards.json**: Never edit the cards file.
+- **Comments**: Never remove existing user code comments when modifying code. Do not generate useless or obvious
+  comments.
 
 ## Data Sources
 - **Cards**: `app/src/main/assets/cards.json`
