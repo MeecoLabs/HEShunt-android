@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import eu.meecolabs.heshunt.BuildConfig
 import eu.meecolabs.heshunt.model.Property
@@ -26,8 +25,8 @@ import org.maplibre.compose.interaction.ClickResult
 import org.maplibre.compose.layers.CircleLayer
 import org.maplibre.compose.map.MaplibreMap
 import org.maplibre.compose.map.rememberMapState
-import org.maplibre.compose.material3.ExpandingAttributionButton
-import org.maplibre.compose.overlay.MaplibreLogo
+import org.maplibre.compose.overlay.MapOverlay
+import org.maplibre.compose.overlay.include
 import org.maplibre.compose.sources.GeoJsonData
 import org.maplibre.compose.sources.rememberGeoJsonSource
 import org.maplibre.compose.style.BaseStyle
@@ -104,14 +103,10 @@ internal fun CardDetailMap(
     Box(modifier = modifier) {
         MaplibreMap(
             state = mapState,
-            modifier = Modifier.matchParentSize()
-        ) {
-            MaplibreLogo(Modifier.align(Alignment.BottomStart))
-
-            ExpandingAttributionButton(
-                contentAlignment = Alignment.BottomEnd,
-                modifier = Modifier.align(Alignment.BottomEnd)
-            )
-        }
+            modifier = Modifier.matchParentSize(),
+            overlay = {
+                include(MapOverlay.AttributionOnly)
+            }
+        )
     }
 }
