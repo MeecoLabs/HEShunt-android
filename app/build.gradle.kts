@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2026 MeecoLabs
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
 import java.util.Properties
 
 plugins {
@@ -12,7 +17,9 @@ plugins {
 android {
     namespace = "eu.meecolabs.heshunt"
     compileSdk {
-        version = release(37)
+        version = release(37) {
+            minorApiLevel = 1
+        }
     }
 
     val versionInfo = Properties().apply {
