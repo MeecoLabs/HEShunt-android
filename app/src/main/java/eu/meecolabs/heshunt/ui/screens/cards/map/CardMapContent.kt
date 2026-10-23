@@ -79,7 +79,7 @@ internal fun CardMapContent(
             val first = state.properties.firstOrNull()
             if (first != null) {
                 CameraPosition(
-                    target = Position(longitude = first.longitude, latitude = first.latitude),
+                    center = Position(longitude = first.longitude, latitude = first.latitude),
                     zoom = 6.0,
                 )
             } else CameraPosition()
